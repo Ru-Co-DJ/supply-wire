@@ -10,10 +10,11 @@ import Categories from "./pages/Categories/Categories";
 import Products from "./pages/Products/Products";
 import Missing from "./pages/Missing/Missing";
 import Account from "./pages/Account/Account";
-
+import Theme from "./utils/Theme/Theme";
 function App() {
   return (
     <>
+    <Theme>
       <BrowserRouter>
         <Navbar/>
         <Routes>
@@ -28,6 +29,7 @@ function App() {
         </Routes>
         <Footer/>
       </BrowserRouter>
+      </Theme>
     </>
   );
 }

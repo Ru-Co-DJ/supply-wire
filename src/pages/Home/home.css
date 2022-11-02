@@ -1,0 +1,35 @@
+.homeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+
+.homeImages{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 30px;
+   
+}
+
+.homeImageCustom{
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px #000;
+}
+
+.homeCategories{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.homeDevider{
+    margin: 30px;
+}

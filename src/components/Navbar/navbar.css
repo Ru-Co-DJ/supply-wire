@@ -1,0 +1,16 @@
+.navContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.navOptions{
+    margin: 0px 5px 0px 5px;
+    cursor: pointer;
+}
