@@ -1,0 +1,21 @@
+.footerContainer{
+    width: 100%;
+    height: 200px;
+    background-color: #05716C;
+    position: static;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.footerSection{
+    border-right: 1px solid #f2f2f2;
+    height: 90%;
+    width: 25%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}

@@ -57,6 +57,20 @@ const Home = () => {
           })
         }
       </Box>
+      <Box className="homeDevider">
+        <Divider textAlign="left"><Typography variant="h6" color="info.light" style={{cursor:"pointer"}}>Latest</Typography></Divider>
+      </Box>
+      <Box className="homeBestSold">
+        {
+          products.sort((a,b)=>(new Date(b.datePosted).getTime() - new Date(a.datePosted).getTime())).map((e,i)=>{
+            return (
+              <Box key={i}>
+                <HomeSold product={e}/>
+              </Box>
+            )
+          })
+        }
+      </Box>
     </Box>
   )
 }
