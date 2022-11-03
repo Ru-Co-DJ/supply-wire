@@ -1,5 +1,5 @@
 import React,{useState, useLayoutEffect} from 'react'
-import {Box, Typography, Chip, Button} from "@mui/material"
+import {Box, Typography, Chip, Button, Divider} from "@mui/material"
 import "./home.css"
 import arduino from "../../assets/images/home/arduino.jpg"
 import dron from "../../assets/images/home/dron.jpg"
@@ -9,6 +9,7 @@ import keyboard from "../../assets/images/home/keyboard.jpg"
 import parts from "../../assets/images/home/parts.jpg"
 import { getData } from '../../api'
 import HomeCategory from '../../components/HomeCategory/HomeCategory'
+import HomeSold from '../../components/HomeSold/HomeSold'
 
 const Home = () => {
   const [products, setProducts] = useState([])
@@ -29,14 +30,28 @@ const Home = () => {
         <img src={gpu} alt="dron" width="80%" className="homeImageCustom"/>
       </Box>
       <Box className="homeDevider">
-        <Typography variant="h6" color="info.light" style={{left:0}}>Categories</Typography>
+        <Divider textAlign="left"><Typography variant="h6" color="info.light" style={{cursor:"pointer"}}>Categories</Typography></Divider>
       </Box>
       <Box className="homeCategories">
         {
-          products.splice(0,8).map((e,i)=>{
+          products.slice(0,8).map((e,i)=>{
             return (
               <Box key={i}>
                 <HomeCategory product={e}/>
+              </Box>
+            )
+          })
+        }
+      </Box>
+      <Box className="homeDevider">
+        <Divider textAlign="left"><Typography variant="h6" color="info.light" style={{cursor:"pointer"}}>Best Sold</Typography></Divider>
+      </Box>
+      <Box className="homeBestSold">
+        {
+          products.sort((a,b)=>(b.sales - a.sales)).map((e,i)=>{
+            return (
+              <Box key={i}>
+                <HomeSold product={e}/>
               </Box>
             )
           })
