@@ -35,3 +35,28 @@
 .link{
     text-decoration: none;
 }
+
+.goUp{
+    width: 50px;
+    height: 50px;
+    background-color: #FF5050;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 20px;
+    z-index: 10;
+    border-radius: 50%;
+    box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

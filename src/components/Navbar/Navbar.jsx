@@ -1,11 +1,13 @@
 import React from 'react'
 import "./navbar.css"
-import { Box, Typography, AppBar, Toolbar, Button, Avatar } from '@mui/material'
+import { Box, Typography, AppBar, Toolbar, Button, Avatar, Tooltip } from '@mui/material'
 import logo from "../../assets/images/Navbar/logo.png"
 import { Link } from 'react-router-dom'
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 
 const Navbar = () => {
   return (
+    <>
     <AppBar elevation={0} color="primary" position="static" style={{marginBottom:"20px"}}>
       <Toolbar className="navContainer">
         <Box className="row">
@@ -41,6 +43,12 @@ const Navbar = () => {
         </Box>
       </Toolbar>
     </AppBar>
+    <Box className="goUp">
+      <Tooltip title="go up" onClick={()=>window.scrollTo({top:0,behavior:"smooth"})}>
+        <ArrowCircleUpIcon color="primary" style={{fontSize:"35px"}}/>
+      </Tooltip>
+    </Box>
+    </>
   )
 }
 

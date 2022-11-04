@@ -66,6 +66,6 @@
     border-radius: 5px;
     margin: 5px;
 }
-.homeSoldItemContainer .description *{
+.homeSoldItemContainer .description > *{
     padding-left: 5px;
 }
