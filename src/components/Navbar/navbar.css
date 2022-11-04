@@ -31,3 +31,7 @@
 .navOptions:hover::after{
     width: 100%;
 }
+
+.link{
+    text-decoration: none;
+}
