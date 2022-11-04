@@ -2,12 +2,14 @@ import React,{useState} from 'react'
 import "./auth.css"
 import { Box, Typography, TextField, Button, Select, MenuItem, InputLabel, FormControl, FormControlLabel, Checkbox } from '@mui/material'
 import { useLocation } from 'react-router-dom'
-
+import { useStateContext } from '../../utils/context/ContextProvider'
 
 const Auth = () => {
   const [choice, setChoice]=useState("")
   const location = useLocation()
   const path = location.pathname.split("/")[2];
+  const {setAccount} = useStateContext()
+  const [cred, setCred] = useState({})
   return (
     <Box className="authContainer">
       {
@@ -17,9 +19,9 @@ const Auth = () => {
               <Typography variant="h4" color="primary">Login</Typography>
             </Box>
             <Box className="authInpLogin">
-              <TextField label="email" variant="standard" style={{marginTop:"20px"}}/>
-              <TextField label="password" type="password" variant="standard" style={{marginTop:"20px"}}/>
-              <Button variant='contained' style={{marginTop:"20px", marginBottom:"30px"}}>Login</Button>
+              <TextField label="email" variant="standard" style={{marginTop:"20px"}} onChange={(e)=>setCred(prev=>({...prev,name:e.target.value}))}/>
+              <TextField label="password" type="password" variant="standard" style={{marginTop:"20px"}} onChange={(e)=>setCred(prev=>({...prev,password:e.target.value}))}/>
+              <Button variant='contained' style={{marginTop:"20px", marginBottom:"30px"}} onClick={()=>{setAccount(cred)}}>Login</Button>
             </Box>
           </>
         ):(
@@ -44,12 +46,14 @@ const Auth = () => {
             </Select>
             </FormControl>
             <FormControlLabel control={<Checkbox  color="secondary"/>} label="Send me updates and offers" />
-            <Button variant='contained' style={{marginTop:"20px", width:"100px", marginBottom:"30px"}}>Sign</Button>
-          </Box>  
+            <Button variant='contained' style={{marginTop:"20px", width:"100px", marginBottom:"30px"}}>SignIn</Button>
+          </Box> 
         </>
         )
       }
-      
+      <Box>
+        <Typography variant="h6" color="secondary">By Continuing you agree to our Terms and Conditions</Typography>
+      </Box>
     </Box>
   )
 }

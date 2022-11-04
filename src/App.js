@@ -12,25 +12,31 @@ import Missing from "./pages/Missing/Missing";
 import Account from "./pages/Account/Account";
 import Theme from "./utils/Theme/Theme";
 import AddProduct from "./pages/AddProduct/AddProduct";
+import { ContextProvider } from "./utils/context/ContextProvider";
+
+
+
 function App() {
   return (
     <>
     <Theme>
-      <BrowserRouter>
-        <Navbar/>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/account" element={<Account/>}/>
-          <Route path="/auth/*" element={<Auth/>}/>
-          <Route path="/best-sales" element={<BestSales/>}/>
-          <Route path="/customer-service" element={<CustomerService/>}/>
-          <Route path="/categories" element={<Categories/>}/>
-          <Route path="/products" element={<Products/>}/>
-          <Route path="/add-product" element={<AddProduct/>}/>
-          <Route path="*" element={<Missing/>}/>
-        </Routes>
-        <Footer/>
-      </BrowserRouter>
+      <ContextProvider>
+        <BrowserRouter>
+          <Navbar/>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/account" element={<Account/>}/>
+            <Route path="/auth/*" element={<Auth/>}/>
+            <Route path="/best-sales" element={<BestSales/>}/>
+            <Route path="/customer-service" element={<CustomerService/>}/>
+            <Route path="/categories" element={<Categories/>}/>
+            <Route path="/products" element={<Products/>}/>
+            <Route path="/add-product" element={<AddProduct/>}/>
+            <Route path="*" element={<Missing/>}/>
+          </Routes>
+          <Footer/>
+        </BrowserRouter>
+      </ContextProvider>
       </Theme>
     </>
   );

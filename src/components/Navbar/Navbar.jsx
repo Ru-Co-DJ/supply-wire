@@ -4,8 +4,10 @@ import { Box, Typography, AppBar, Toolbar, Button, Avatar, Tooltip } from '@mui/
 import logo from "../../assets/images/Navbar/logo.png"
 import { Link } from 'react-router-dom'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import { useStateContext } from '../../utils/context/ContextProvider'
 
 const Navbar = () => {
+  const {account} = useStateContext();
   return (
     <>
     <AppBar elevation={0} color="primary" position="static" style={{marginBottom:"20px"}}>
@@ -29,18 +31,27 @@ const Navbar = () => {
             <Typography variant="h6">Stores</Typography>
           </Box>
         </Box>
-        <Box>
-          <Link to="/auth/login" className="link">
-            <Button variant="text" style={{marginRight:"10px"}}>
-              <Typography variant="body1" color="info.main">Login</Typography>
-            </Button>
-          </Link>
-          <Link to="/auth/signup" className="link">
-            <Button variant="text" style={{marginRight:"10px"}}>
-              <Typography variant="body1" color="info.main">Sign Up</Typography>
-            </Button>
-          </Link>
-        </Box>
+        {
+          !account.name ? (
+            <Box>
+              <Link to="/auth/login" className="link">
+                <Button variant="text" style={{marginRight:"10px"}}>
+                  <Typography variant="body1" color="info.main">Login</Typography>
+                </Button>
+              </Link>
+              <Link to="/auth/signup" className="link">
+                <Button variant="text" style={{marginRight:"10px"}}>
+                  <Typography variant="body1" color="info.main">Sign Up</Typography>
+                </Button>
+              </Link>
+              </Box>
+          ):(
+            <Box className="row">
+              <Avatar >{account.name.toUpperCase()[0]}</Avatar>
+              <Typography variant="h5" style={{margin:"5px"}}>{account.name}</Typography>
+            </Box>
+          )
+        }
       </Toolbar>
     </AppBar>
     <Box className="goUp">
