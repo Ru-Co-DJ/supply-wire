@@ -10,6 +10,7 @@ import parts from "../../assets/images/home/parts.jpg"
 import { getData } from '../../api'
 import HomeCategory from '../../components/HomeCategory/HomeCategory'
 import HomeSold from '../../components/HomeSold/HomeSold'
+import SideTool from '../../components/SideTool/SideTool'
 
 const Home = () => {
   const [products, setProducts] = useState([])
@@ -22,7 +23,10 @@ const Home = () => {
   },[])
 
   return (
-    <Box className="homeContainer"> 
+    <>
+      <SideTool/>
+      <Box className="homeContainer"> 
+      
       <Box className="homeHeader">
         <Typography variant="h2" color="primary">Make your life easier and smile more</Typography>
       </Box>
@@ -34,7 +38,7 @@ const Home = () => {
       </Box>
       <Box className="homeCategories">
         {
-          products.slice(0,8).map((e,i)=>{
+          products.slice(0,4).map((e,i)=>{
             return (
               <Box key={i}>
                 <HomeCategory product={e}/>
@@ -48,7 +52,7 @@ const Home = () => {
       </Box>
       <Box className="homeBestSold">
         {
-          products.sort((a,b)=>(b.sales - a.sales)).map((e,i)=>{
+          products.slice(0,4).sort((a,b)=>(b.sales - a.sales)).map((e,i)=>{
             return (
               <Box key={i}>
                 <HomeSold product={e}/>
@@ -62,7 +66,7 @@ const Home = () => {
       </Box>
       <Box className="homeBestSold">
         {
-          products.sort((a,b)=>(new Date(b.datePosted).getTime() - new Date(a.datePosted).getTime())).map((e,i)=>{
+          products.slice(0,4).sort((a,b)=>(new Date(b.datePosted).getTime() - new Date(a.datePosted).getTime())).map((e,i)=>{
             return (
               <Box key={i}>
                 <HomeSold product={e}/>
@@ -71,7 +75,8 @@ const Home = () => {
           })
         }
       </Box>
-    </Box>
+      </Box>
+    </>
   )
 }
 
