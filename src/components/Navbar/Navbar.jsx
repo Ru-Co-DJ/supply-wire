@@ -1,20 +1,20 @@
 import React from 'react'
 import "./navbar.css"
 import { Box, Typography, AppBar, Toolbar, Button, Avatar, Tooltip } from '@mui/material'
-import logo from "../../assets/images/Navbar/logo.png"
 import { Link } from 'react-router-dom'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import { useStateContext } from '../../utils/context/ContextProvider'
 
 const Navbar = () => {
   const {account} = useStateContext();
+  
   return (
-    <>
-    <AppBar elevation={0} color="primary" position="static" style={{marginBottom:"20px", height:"60px"}}>
+    <Box style={{height:"65px", maxHeight:"100%"}}>
+    <AppBar elevation={0} color="primary" position="relative" style={{marginBottom:"20px", height:"60px", position:"fixed",zIndex:"15"}}>
       <Toolbar className="navContainer">
         <Box className="row">
           <Link to="/" className="link">
-            <Typography variant="h5" style={{marginLeft:"5px",marginTop:"5px", color:"#f2f2f2"}} >Supply Wire</Typography>
+            <Typography variant="h6" style={{color:"#f2f2f2"}} >SupplyWire</Typography>
           </Link>
         </Box>
         <Box className="row">
@@ -33,7 +33,7 @@ const Navbar = () => {
         </Box>
         {
           !account.name ? (
-            <Box>
+            <Box className='row'>
               <Link to="/auth/login" className="link">
                 <Button variant="text" style={{marginRight:"10px"}}>
                   <Typography variant="body1" color="info.main">Login</Typography>
@@ -59,7 +59,7 @@ const Navbar = () => {
         <ArrowCircleUpIcon color="primary" style={{fontSize:"35px"}}/>
       </Tooltip>
     </Box>
-    </>
+    </Box>
   )
 }
 

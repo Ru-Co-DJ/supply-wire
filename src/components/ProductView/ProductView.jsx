@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Box, Typography, Card, Grid, Chip, Avatar, Divider, Rating, Button, FormControl, InputLabel, Select, MenuItem, TextField, Tooltip} from "@mui/material";
 import {useStateContext} from "../../utils/context/ContextProvider"
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import InventoryIcon from '@mui/icons-material/Inventory';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';import InventoryIcon from '@mui/icons-material/Inventory';
 import PaletteIcon from '@mui/icons-material/Palette';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -13,6 +12,9 @@ import "./productview.css"
 
 const ProductView = () => {
     const {selectedProduct} = useStateContext()
+    useEffect(()=>{
+        window.scrollTo({top:"0px"})
+    },[])
 
   return (
     <Grid container spacing={3}>
@@ -21,8 +23,9 @@ const ProductView = () => {
         <Box className="viewProductName">
             <Typography variant="h4" color="info.main" style={{marginLeft:"20px", padding:"5px", borderRadius:"5px",backgroundColor:"#05716C"}}>{selectedProduct.name}</Typography>
             <Typography variant="h6" color="info.light" style={{marginLeft:"5px"}}>{selectedProduct.serie}</Typography>
-            <Chip label={selectedProduct.category} color="secondary" style={{marginLeft:"20px"}}/>
+            <Chip label={selectedProduct.category} color="secondary" style={{marginLeft:"20%"}}/>
         </Box>
+        <Typography variant="h3" color="primary" style={{marginBottom:"10px"}}>Overview</Typography>
         <Box className='productImages'>
             <Box className="imageView">
                 <img src={selectedProduct.images[0]} alt="product" height="100%" />
@@ -44,7 +47,7 @@ const ProductView = () => {
             </Box>
             <Box className="row">
                 <Typography variant="h6" color="primary" style={{marginLeft:"20px"}}>{selectedProduct.datePosted}</Typography>
-                <Box style={{marginLeft:"20px"}} className="row">
+                <Box style={{marginLeft:"20px", maxWidth:"100%"}} className="row">
                     <Typography variant="h6" color="primary">From the brand:</Typography>
                     <Typography variant="h6" color="info.light" style={{marginLeft:"20px"}}>{selectedProduct.brand}</Typography>
                 </Box>
@@ -52,7 +55,7 @@ const ProductView = () => {
         </Box>
         <Box className="viewDetails">
             <Box className="row viewPrice">
-                <AttachMoneyIcon style={{color:"#0E2A47", marginTop:"2px"}}/>
+                <MonetizationOnIcon style={{color:"#0E2A47", marginTop:"2px"}}/>
                 <Typography variant="subtitle1" color="primary">Price:</Typography>
                 <Typography variant="h5" color="primary" style={{marginLeft:"10px", fontWeight:"bold"}}>{selectedProduct.price} $</Typography>
             </Box>
@@ -88,7 +91,7 @@ const ProductView = () => {
         <Divider style={{width:"50%", margin:"15px"}}/>
         <Typography variant="h4" color="primary" style={{marginBottom:"20px"}}>Add review</Typography>
         <Box className="addProductReview">
-            <Box className="row">
+            <Box className="row" style={{flexWrap:"wrap"}}>
                 <Typography variant="h6" color="primary">Rate:</Typography>
                 <Rating defaultValue={2.5} precision={0.5} style={{marginTop:"5px",marginLeft:"10px"}}/>
             </Box>
@@ -132,7 +135,6 @@ const ProductView = () => {
                     <Select value={1} onChange={()=>{}}>
                         {
                             Array.from(Array(Math.floor(selectedProduct.quantity)),(_,i)=>i+1).map(e=>{
-                                console.log(e)
                                 return <MenuItem key={e} value={e}>{e}</MenuItem>
                             })
                             

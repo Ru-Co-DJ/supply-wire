@@ -16,7 +16,7 @@ const Home = () => {
   useLayoutEffect(()=>{
     getData().then(res=>{
       setProducts(res)
-      console.log(res)
+     
     })
   },[])
   return (
