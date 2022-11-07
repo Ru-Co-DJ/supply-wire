@@ -14,7 +14,9 @@ import Theme from "./utils/Theme/Theme";
 import AddProduct from "./pages/AddProduct/AddProduct";
 import { ContextProvider } from "./utils/context/ContextProvider";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
-
+import About from "./pages/About/About"
+import Contact from "./pages/Contact/Contact"
+import FAQ from "./pages/FAQ/FAQ"
 
 
 function App() {
@@ -34,6 +36,9 @@ function App() {
             <Route path="/products" element={<Products/>}/>
             <Route path="/add-product" element={<AddProduct/>}/>
             <Route path="/product/:id" element={<SingleProduct/>}/>
+            <Route path="/about" element={<About/>}/>
+            <Route path="/contact" element={<Contact/>}/>
+            <Route path="/faq" element={<FAQ/>}/>
             <Route path="*" element={<Missing/>}/>
           </Routes>
           <Footer/>
