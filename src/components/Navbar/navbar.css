@@ -1,11 +1,10 @@
 .navContainer{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row;
     max-width: 100%;
     flex-wrap: nowrap;
-    height: 60px;
 }
 
 .row{

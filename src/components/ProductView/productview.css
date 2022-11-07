@@ -1,16 +1,133 @@
+.viewProductContainer{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
 .productImages{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
 }
 
 .imageView{
-    width: 25%;
     height: 200px;
     margin: 10px;
     border-radius: 10px;
     box-shadow: 0px 0px 9px rgba(0,0,0,0.5);
     overflow: hidden;
+}
+
+.viewProductName{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.viewProductStore{
+    width: 100%;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: row;
+}
+
+.viewProductDes{
+    max-width: 100%;
+    margin-left: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.viewProductRate{
+    width: 100%;
+    margin-left: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.viewProductReviews{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+
+.oneReview{
+    width: 100%;
+    margin: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.5);
+}
+
+.viewDetails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.viewPrice{
+    border: 1px solid #05716C;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.viewProductColor{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.viewProductShopControl{
+    position: fixed;
+    right: 10px;
+    width: 22%;
+    height: 50%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.addProductReview{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.2);
 }

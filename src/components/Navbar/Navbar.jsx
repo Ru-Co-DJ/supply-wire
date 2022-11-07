@@ -10,7 +10,7 @@ const Navbar = () => {
   const {account} = useStateContext();
   return (
     <>
-    <AppBar elevation={0} color="primary" position="static" style={{marginBottom:"20px"}}>
+    <AppBar elevation={0} color="primary" position="static" style={{marginBottom:"20px", height:"60px"}}>
       <Toolbar className="navContainer">
         <Box className="row">
           <Link to="/" className="link">

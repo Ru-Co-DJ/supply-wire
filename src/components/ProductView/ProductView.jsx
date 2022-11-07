@@ -1,6 +1,11 @@
 import React from 'react'
-import {Box, Typography, Card, Grid, Chip, Avatar, Divider} from "@mui/material";
+import {Box, Typography, Card, Grid, Chip, Avatar, Divider, Rating, Button, FormControl, InputLabel, Select, MenuItem, TextField, Tooltip} from "@mui/material";
 import {useStateContext} from "../../utils/context/ContextProvider"
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import PaletteIcon from '@mui/icons-material/Palette';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import VerifiedIcon from '@mui/icons-material/Verified';
 import "./productview.css"
 
 
@@ -10,49 +15,136 @@ const ProductView = () => {
     const {selectedProduct} = useStateContext()
 
   return (
-    <Box>
-        <Box>
-            <Typography variant="h6">{selectedProduct.name}, {selectedProduct.serie}</Typography>
+    <Grid container spacing={3}>
+        <Grid item xs={9}>
+        <Box className="viewProductContainer">
+        <Box className="viewProductName">
+            <Typography variant="h4" color="info.main" style={{marginLeft:"20px", padding:"5px", borderRadius:"5px",backgroundColor:"#05716C"}}>{selectedProduct.name}</Typography>
+            <Typography variant="h6" color="info.light" style={{marginLeft:"5px"}}>{selectedProduct.serie}</Typography>
+            <Chip label={selectedProduct.category} color="secondary" style={{marginLeft:"20px"}}/>
         </Box>
-
         <Box className='productImages'>
             <Box className="imageView">
-                <img src={selectedProduct.images[0]} alt="product" width="100%" />
+                <img src={selectedProduct.images[0]} alt="product" height="100%" />
             </Box>
             <Box className="imageView">
-                <img src={selectedProduct.images[1]} alt="product" width="100%"/>
+                <img src={selectedProduct.images[1]} alt="product" height="100%"/>
             </Box>
             <Box className="imageView">
-                <img src={selectedProduct.images[2]} alt="product" width="100%"/>
+                <img src={selectedProduct.images[2]} alt="product" height="100%"/>
             </Box>
         </Box>
-        <Box>
-            <Typography variant="h5">store: {selectedProduct.store}</Typography>
+        <Box className="viewProductStore">
+            <Box style={{display:"flex", flexDirection:"row"}}>
+                <Typography variant="h4" color="primary">Store:</Typography>
+                <Typography variant="h6" color="info.main" style={{backgroundColor:"#FF5050", padding:"3px", borderRadius:"5px", marginLeft:"10px", cursor:"pointer"}}>{selectedProduct.store}</Typography>
+                <Tooltip title="Verified">
+                    <VerifiedIcon color="success" style={{fontSize:"30px", marginTop:"5px"}}/>
+                </Tooltip>
+            </Box>
+            <Box className="row">
+                <Typography variant="h6" color="primary" style={{marginLeft:"20px"}}>{selectedProduct.datePosted}</Typography>
+                <Box style={{marginLeft:"20px"}} className="row">
+                    <Typography variant="h6" color="primary">From the brand:</Typography>
+                    <Typography variant="h6" color="info.light" style={{marginLeft:"20px"}}>{selectedProduct.brand}</Typography>
+                </Box>
+            </Box>
         </Box>
-        <Box>
-            <Typography variant="subtitle1">Description: {selectedProduct.description}</Typography>
+        <Box className="viewDetails">
+            <Box className="row viewPrice">
+                <AttachMoneyIcon style={{color:"#0E2A47", marginTop:"2px"}}/>
+                <Typography variant="subtitle1" color="primary">Price:</Typography>
+                <Typography variant="h5" color="primary" style={{marginLeft:"10px", fontWeight:"bold"}}>{selectedProduct.price} $</Typography>
+            </Box>
+            <Box className="row viewPrice">
+                <InventoryIcon style={{color:"#0E2A47", marginTop:"2px"}}/>
+                <Typography variant="subtitle1" color="primary">Available:</Typography>
+                <Typography variant="h5" color="primary" style={{marginLeft:"10px", fontWeight:"bold"}}>{Math.floor(selectedProduct.quantity)}</Typography>
+            </Box>
+            <Box className="row viewPrice">
+                <PaletteIcon style={{color:"#0E2A47", marginTop:"2px"}}/>
+                <Typography variant="subtitle1" color="primary">Color:</Typography>
+                <Box className="viewProductColor" style={{backgroundColor:selectedProduct.color}}/>
+            </Box>
+            <Box className="row viewPrice">
+                <ShoppingBagIcon style={{color:"#0E2A47", marginTop:"2px"}}/>
+                <Typography variant="subtitle1" color="primary">Sales:</Typography>
+                <Typography variant="h5" color="primary" style={{marginLeft:"10px", fontWeight:"bold"}}>{selectedProduct.sales}</Typography>
+            </Box>
         </Box>
-        <Box>
-            <Typography variant="h5">Rate: {selectedProduct.rate}</Typography>
+        <Divider style={{width:"50%", margin:"15px"}}/>
+        <Box className='viewProductDes'>
+            <Typography variant="h4" color="primary">Description:</Typography>
+            <Typography variant="h6" color="secondary" style={{marginTop:"10px", marginLeft:"10px"}}>{selectedProduct.description}</Typography>
         </Box>
-        <Box>
-            <Typography variant="h5">store: {selectedProduct.store}</Typography>
+        <Divider style={{width:"50%", margin:"15px"}}/>
+        <Box className="viewProductRate">
+            <Typography variant="h4" color="primary">Rate:</Typography>
+            <Rating defaultValue={selectedProduct.rate} precision={0.1} readOnly style={{marginTop:"5px", marginLeft:"15px"}}/>
+            <Typography variant="h5" style={{marginTop:"5px", marginLeft:"10px"}} color="primary">{selectedProduct.rate}</Typography>
+            <Typography variant="h6" style={{marginTop:"5px", marginLeft:"10px"}} color="primary">({selectedProduct.reviews.length} review)</Typography>
+            
         </Box>
-        <Box>
+        <Divider style={{width:"50%", margin:"15px"}}/>
+        <Typography variant="h4" color="primary" style={{marginBottom:"20px"}}>Add review</Typography>
+        <Box className="addProductReview">
+            <Box className="row">
+                <Typography variant="h6" color="primary">Rate:</Typography>
+                <Rating defaultValue={2.5} precision={0.5} style={{marginTop:"5px",marginLeft:"10px"}}/>
+            </Box>
+            <Box className="column" style={{width:"100%"}}>
+                <TextField label="Review" multiline rows={5} variant="outlined" fullWidth/>
+                <Button variant="contained" color="secondary" style={{margin:"10px"}}>Submit</Button>
+            </Box>
+        </Box>
+        <Divider style={{width:"50%", margin:"15px"}}/>
+        <Typography variant="h3" color="primary">Reviews</Typography>
+        <Box className="viewProductReviews">
             {
                 selectedProduct.reviews.map((e,i)=>{
                     return(
-                        <Box key={i}>
-                            <Typography variant="h5">{e.name}: {e.date}</Typography>
-                            <Typography variant="body1">Rate: {e.rate}</Typography>
-                            <Typography variant="body1">Review: {e.review}</Typography>
-                            <Divider/>
+                        <Box key={i} className="oneReview">
+                            <Box className="row">
+                                <Avatar style={{color:"#f2f2f2", backgroundColor:"#1978A5"}}>{e.name.toUpperCase()[0]}</Avatar>
+                                <Typography variant="h5" color="primary" style={{margin:"5px"}}>{e.name}</Typography>
+                                <Typography variant="body1" style={{marginTop:"10px"}}>({e.date})</Typography>
+                            </Box>
+                            <Box className="row">
+                                <Typography variant="h6" color="primary" style={{margin:"5px"}}>Rate:</Typography>
+                                <Rating defaultValue={e.rate} precision={0.1} readOnly style={{marginTop:"8px", marginLeft:"15px"}}/>
+                            </Box>
+                            <Box className="row">
+                                <Typography variant="h6" color="primary">Review:</Typography>
+                                <Typography variant="body1" color="secondary" style={{marginTop:"5px", marginLeft:"10px"}}>{e.review}</Typography>
+                            </Box>
                         </Box>
                     )
                 })
             }
         </Box>
     </Box>
+        </Grid>
+        <Grid item xs={3}>
+            <Box className="viewProductShopControl">
+                <Typography variant="h6" color="info.light">Like it ?</Typography>
+                <FormControl variant="standard" style={{minWidth:"50%", margin:"10px"}}>
+                    <InputLabel>Quantity</InputLabel>
+                    <Select value={1} onChange={()=>{}}>
+                        {
+                            Array.from(Array(Math.floor(selectedProduct.quantity)),(_,i)=>i+1).map(e=>{
+                                console.log(e)
+                                return <MenuItem key={e} value={e}>{e}</MenuItem>
+                            })
+                            
+                        }
+                    </Select>
+                </FormControl>
+                <Button color="secondary" variant="contained" style={{width:"90%", margin:"5px"}}>Add to Cart</Button>
+                <Button color="primary" variant="contained" style={{width:"90%", margin:"5px"}}>Buy Now</Button>
+                <Typography variant="h6" color="primary" style={{margin:"5px"}}>Feel free to contact the store owner about this product</Typography>
+            </Box>
+        </Grid>
+    </Grid>
   )
 }
 

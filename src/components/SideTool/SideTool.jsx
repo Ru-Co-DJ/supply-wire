@@ -7,9 +7,16 @@ import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import HelpIcon from '@mui/icons-material/Help';
 import LanguageIcon from '@mui/icons-material/Language';
 import SettingsIcon from '@mui/icons-material/Settings';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import {Link} from "react-router-dom"
 const SideTool = () => {
   return (
     <Box className="sideContainer">
+        <Box>
+          <Link to="/add-product" className="link"><AddCircleIcon style={{fontSize:"40px", color:"#fff"}}/></Link>
+          <Typography variant="subtitle1" color="info.main">Add Product</Typography>
+        </Box>
+        <Divider color="#fff"/>
         <Box>
           <ShoppingCartIcon style={{fontSize:"40px", color:"#fff"}}/>
           <Typography variant="subtitle1" color="info.main">Cart</Typography>
