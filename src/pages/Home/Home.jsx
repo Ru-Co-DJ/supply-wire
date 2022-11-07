@@ -11,17 +11,14 @@ import { getData } from '../../api'
 import HomeCategory from '../../components/HomeCategory/HomeCategory'
 import HomeSold from '../../components/HomeSold/HomeSold'
 import SideTool from '../../components/SideTool/SideTool'
-
 const Home = () => {
   const [products, setProducts] = useState([])
-
   useLayoutEffect(()=>{
     getData().then(res=>{
       setProducts(res)
       console.log(res)
     })
   },[])
-
   return (
     <>
       <SideTool/>
@@ -66,7 +63,7 @@ const Home = () => {
       </Box>
       <Box className="homeBestSold">
         {
-          products.slice(0,4).sort((a,b)=>(new Date(b.datePosted).getTime() - new Date(a.datePosted).getTime())).map((e,i)=>{
+          products.slice(15,19).sort((a,b)=>(new Date(b.datePosted).getTime() - new Date(a.datePosted).getTime())).map((e,i)=>{
             return (
               <Box key={i}>
                 <HomeSold product={e}/>

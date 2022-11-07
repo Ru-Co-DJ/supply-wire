@@ -13,6 +13,7 @@ import Account from "./pages/Account/Account";
 import Theme from "./utils/Theme/Theme";
 import AddProduct from "./pages/AddProduct/AddProduct";
 import { ContextProvider } from "./utils/context/ContextProvider";
+import SingleProduct from "./pages/SingleProduct/SingleProduct";
 
 
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/categories" element={<Categories/>}/>
             <Route path="/products" element={<Products/>}/>
             <Route path="/add-product" element={<AddProduct/>}/>
+            <Route path="/product/:id" element={<SingleProduct/>}/>
             <Route path="*" element={<Missing/>}/>
           </Routes>
           <Footer/>

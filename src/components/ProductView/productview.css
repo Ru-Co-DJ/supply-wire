@@ -1,0 +1,16 @@
+.productImages{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.imageView{
+    width: 25%;
+    height: 200px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
