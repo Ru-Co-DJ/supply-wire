@@ -2,22 +2,27 @@ import React,{useState,useEffect, useLayoutEffect} from 'react'
 import "./singleproduct.css"
 import {Box} from "@mui/material";
 import { useLocation } from 'react-router-dom';
-import { getProduct } from '../../api';
+import { getOneProductGQL } from '../../api';
+import { useQuery } from '@apollo/client';
 import ProductView from '../../components/ProductView/ProductView';
-import {useStateContext} from "../../utils/context/ContextProvider"
 
 const SingleProduct = () => {
     const path = useLocation().pathname.split("/")
-    const {setSelectedProduct} = useStateContext()
+    const {loading, error, data} = useQuery(getOneProductGQL, {variables:{id:path[path.length-1]}})
 
-    useLayoutEffect(()=>{
-        getProduct(path[path.length-1]).then(res=>{
-          setSelectedProduct(res)
-        })
-    },[])
+    const [product, setProduct] = useState({})
+    
+    useEffect(()=>{
+      data && setProduct(data.product)
+    },[data])
+
   return (
     <Box className="pageProductContainer">
-      <ProductView />
+      {
+        product?.name && (
+          <ProductView selectedProduct={product}/>
+        )
+      }
     </Box>
   )
 }

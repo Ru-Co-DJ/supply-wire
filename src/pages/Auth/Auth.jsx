@@ -46,7 +46,7 @@ const Auth = () => {
             </Select>
             </FormControl>
             <FormControlLabel control={<Checkbox  color="secondary"/>} label="Send me updates and offers" />
-            <Button variant='contained' style={{marginTop:"20px", width:"100px", marginBottom:"30px"}}>SignIn</Button>
+            <Button variant='contained' style={{marginTop:"20px", width:"100px", marginBottom:"30px"}}>SignUp</Button>
           </Box> 
         </>
         )

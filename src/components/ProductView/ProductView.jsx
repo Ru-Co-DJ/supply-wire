@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import {Box, Typography, Card, Grid, Chip, Avatar, Divider, Rating, Button, FormControl, InputLabel, Select, MenuItem, TextField, Tooltip} from "@mui/material";
-import {useStateContext} from "../../utils/context/ContextProvider"
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';import InventoryIcon from '@mui/icons-material/Inventory';
 import PaletteIcon from '@mui/icons-material/Palette';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
@@ -10,8 +9,7 @@ import "./productview.css"
 
 
 
-const ProductView = () => {
-    const {selectedProduct} = useStateContext()
+const ProductView = ({selectedProduct}) => {
     useEffect(()=>{
         window.scrollTo({top:"0px"})
     },[])

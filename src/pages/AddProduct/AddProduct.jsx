@@ -15,12 +15,12 @@ const AddProduct = () => {
                 <Box>
                     <Typography variant="h5" color="primary">Product Name</Typography>                    
                     <TextField fullWidth variant="standard" label="Product name"/>
-                    <Typography variant="body1">keep the name under 10 words</Typography>
+                    <Typography variant="body1">keep the name under 5 words</Typography>
                 </Box>
                 <Box>
                     <Typography variant="h5" color="primary">Product Price USD</Typography>                    
                     <TextField fullWidth variant="standard" type="number" label="Product price"/>
-                    <Typography variant="body1">keep the name under 10 words</Typography>
+                    <Typography variant="body1">Price in USD</Typography>
 
                 </Box>
                 <Box>
@@ -39,38 +39,33 @@ const AddProduct = () => {
                             <MenuItem value={"Arduino"}>Arduino</MenuItem>
                         </Select>
                     </FormControl>
-                    <Typography variant="body1">keep the name under 10 words</Typography>
+                    <Typography variant="body1">Required Field</Typography>
 
                 </Box>
                 <Box>
                 <Typography variant="h5" color="primary">Product Quantity</Typography>
                     <TextField fullWidth variant="standard" type="number" label="Quantity"/>
-                    <Typography variant="body1">keep the name under 10 words</Typography>
+                    <Typography variant="body1">Must be grater than 0</Typography>
                 </Box>
                 <Box>
                 <Typography variant="h5" color="primary">Name of brand</Typography>
                     <TextField fullWidth variant="standard" label="Product brand"/>
-                    <Typography variant="body1">keep the name under 10 words</Typography>
-                </Box>
-                <Box>
-                <Typography variant="h5" color="primary">Product Quality</Typography>
-                    <TextField fullWidth variant="standard" label="Product quality"/>
-                    <Typography variant="body1">keep the name under 10 words</Typography>
+                    <Typography variant="body1">keep the name under 5 words</Typography>
                 </Box>
                 <Box>
                     <Typography variant="h5" color="primary">Product Images</Typography>
                     <Typography variant="h6">For images</Typography>
-                    <Typography variant="body1">keep the name under 10 words</Typography>
+                    <Typography variant="body1">Select at least 3 images</Typography>
                 </Box>
                 <Box>
                     <Typography variant="h5" color="primary">Available colors</Typography>
                     <Typography variant="h6">For colors</Typography>
-                    <Typography variant="body1">keep the name under 10 words</Typography>
+                    <Typography variant="body1">Select at least one color</Typography>
                 </Box>
                 <Box>
                     <Typography variant="h5" color="primary">Product description</Typography>
                     <TextField fullWidth variant="standard" multiline rows={5} label="Product description"/>
-                    <Typography variant="body1">keep the name under 10 words</Typography>
+                    <Typography variant="body1">At least 30 word</Typography>
                 </Box>
             </Box>
             <Box className="column" style={{marginBottom:"50px"}}>
