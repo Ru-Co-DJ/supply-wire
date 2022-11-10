@@ -27,7 +27,7 @@ const HomeSold = ({product}) => {
             </Box>
             <Box className="row">
                 <StoreIcon color="secondary" style={{fontSize:"23px"}}/>
-                <Typography variant="body1" color="primary" className="name">Store: {product.store}</Typography>
+                <Typography variant="body1" color="primary" className="name">Store: {product.storeObj.name}</Typography>
             </Box>
             <Box className="row">
                 <ReviewsIcon color="secondary" style={{fontSize:"23px"}}/>

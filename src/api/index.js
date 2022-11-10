@@ -32,7 +32,9 @@ export const getOneProductGQL = gql`
             category
             images
             serie
-            store
+            storeObj{
+                name
+            }
             rate
             brand
             sales
@@ -53,22 +55,14 @@ export const getProductsGQL = gql`
             id
             name
             price
-            description
             datePosted
-            quantity
-            color
-            category
             images
-            serie
-            store
-            rate
-            brand
+            storeObj{
+                name
+            }
             sales
             reviews{
                 name
-                rate
-                review
-                date
             }
         }
     }

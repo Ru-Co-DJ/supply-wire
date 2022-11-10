@@ -38,7 +38,7 @@ const ProductView = ({selectedProduct}) => {
         <Box className="viewProductStore">
             <Box style={{display:"flex", flexDirection:"row"}}>
                 <Typography variant="h4" color="primary">Store:</Typography>
-                <Typography variant="h6" color="info.main" style={{backgroundColor:"#FF5050", padding:"3px", borderRadius:"5px", marginLeft:"10px", cursor:"pointer"}}>{selectedProduct.store}</Typography>
+                <Typography variant="h6" color="info.main" style={{backgroundColor:"#FF5050", padding:"3px", borderRadius:"5px", marginLeft:"10px", cursor:"pointer"}}>{selectedProduct.storeObj.name}</Typography>
                 <Tooltip title="Verified">
                     <VerifiedIcon color="success" style={{fontSize:"30px", marginTop:"5px"}}/>
                 </Tooltip>
