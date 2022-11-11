@@ -35,7 +35,7 @@ function App() {
             <Route path="/best-sales" element={<BestSales/>}/>
             <Route path="/customer-service" element={<CustomerService/>}/>
             <Route path="/categories" element={<Categories/>}/>
-            <Route path="/products" element={<Products/>}/>
+            <Route path="/products/:d" element={<Products/>}/>
             <Route path="/add-product" element={<AddProduct/>}/>
             <Route path="/product/:id" element={<SingleProduct/>}/>
             <Route path="/about" element={<About/>}/>

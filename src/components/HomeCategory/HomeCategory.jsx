@@ -1,16 +1,20 @@
 import React from 'react'
 import "./homecategory.css";
 import { Typography, Box, Button, Avatar, Tooltip, Chip } from '@mui/material';
-
+import { Link } from 'react-router-dom';
 
 const HomeCategory = ({product}) => {
   return (
-    <Box className="CateContainer">
-        <Typography variant="body1">{product.category}</Typography>
+    <Link to={`/products/${product.category}`} style={{all:"unset"}}>
+      <Box className="CateContainer">
         <Box className='categoryItemContainer'>
-            <img src={product.images[1]} alt={product.name} width="400px"/>
+            <img src={product.images[1]} alt={product.name} width="400px" className="hoverCate"/>
         </Box>
-    </Box>
+        <Box className="homeCateImTxt">
+          <Typography variant="h5" style={{fontWeight:"bold"}} >{product.category}</Typography>
+        </Box>
+      </Box>
+    </Link>
   )
 }
 

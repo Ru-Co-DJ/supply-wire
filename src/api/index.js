@@ -58,6 +58,7 @@ export const getProductsGQL = gql`
             price
             datePosted
             images
+            category
             storeObj{
                 name
             }

@@ -22,7 +22,9 @@ const Navbar = () => {
             <Typography variant="h6" color="info.main">Today's sales</Typography>
           </Box>
           <Box className="navOptions">
-            <Typography variant="h6" color="info.main">Promotions</Typography>
+          <Link to="/products/all" className="link">
+            <Typography variant="h6" color="info.main">By category</Typography>
+          </Link>
           </Box>
           <Box className="navOptions">
             <Typography variant="h6" color="info.main">Customer service</Typography>
