@@ -23,7 +23,7 @@ const HomeSold = ({product}) => {
         <Box className="description">
             <Box className="row">
                 <CalendarMonthIcon color="secondary" style={{fontSize:"23px"}}/>
-                <Typography variant="body1" color="primary" className="name">Posted: {product.datePosted}</Typography>
+                <Typography variant="body1" color="primary" className="name">Posted: {new Date(Number(product.datePosted)).toISOString().split("T")[0]}</Typography>
             </Box>
             <Box className="row">
                 <StoreIcon color="secondary" style={{fontSize:"23px"}}/>

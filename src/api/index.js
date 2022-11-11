@@ -34,6 +34,7 @@ export const getOneProductGQL = gql`
             serie
             storeObj{
                 name
+                id
             }
             rate
             brand
@@ -67,3 +68,45 @@ export const getProductsGQL = gql`
         }
     }
 `
+
+export const getStore = gql`
+    query getOneStore($id:ID){
+        store(id: $id){
+            name
+            rate
+            sales
+            rank
+            description
+            dateOpened
+            productsObj{
+                id
+                name
+                images
+                price
+                category
+            }
+            image
+            reviews{
+                name
+                date
+                rate
+                review
+            }
+        }
+    }
+`
+
+export const getStores = gql`
+    query getstores{
+        stores{
+            id
+            name
+            image
+            dateOpened
+            rank
+            rate
+            sales
+            description
+        }
+    }
+` 

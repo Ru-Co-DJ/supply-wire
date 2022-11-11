@@ -14,21 +14,23 @@ const Navbar = () => {
       <Toolbar className="navContainer">
         <Box className="row">
           <Link to="/" className="link">
-            <Typography variant="h6" style={{color:"#f2f2f2"}} >SupplyWire</Typography>
+            <Typography variant="h5" color="info.main" >SupplyWire</Typography>
           </Link>
         </Box>
         <Box className="row">
           <Box className="navOptions">
-            <Typography variant="h6">Today's sales</Typography>
+            <Typography variant="h6" color="info.main">Today's sales</Typography>
           </Box>
           <Box className="navOptions">
-            <Typography variant="h6">Promotions</Typography>
+            <Typography variant="h6" color="info.main">Promotions</Typography>
           </Box>
           <Box className="navOptions">
-            <Typography variant="h6">Customer service</Typography>
+            <Typography variant="h6" color="info.main">Customer service</Typography>
           </Box>
           <Box className="navOptions">
-            <Typography variant="h6">Stores</Typography>
+            <Link to="/stores" className="link">
+              <Typography variant="h6" color="info.main">Stores</Typography>
+            </Link>
           </Box>
         </Box>
         {

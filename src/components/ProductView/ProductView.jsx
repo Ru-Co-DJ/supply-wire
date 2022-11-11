@@ -5,7 +5,7 @@ import PaletteIcon from '@mui/icons-material/Palette';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import "./productview.css"
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -13,7 +13,6 @@ const ProductView = ({selectedProduct}) => {
     useEffect(()=>{
         window.scrollTo({top:"0px"})
     },[])
-
   return (
     <Grid container spacing={3}>
         <Grid item xs={9}>
@@ -38,13 +37,16 @@ const ProductView = ({selectedProduct}) => {
         <Box className="viewProductStore">
             <Box style={{display:"flex", flexDirection:"row"}}>
                 <Typography variant="h4" color="primary">Store:</Typography>
-                <Typography variant="h6" color="info.main" style={{backgroundColor:"#FF5050", padding:"3px", borderRadius:"5px", marginLeft:"10px", cursor:"pointer"}}>{selectedProduct.storeObj.name}</Typography>
+                <Link to={`/store/${selectedProduct.storeObj.id}`} className="link">
+                    <Typography variant="h6" color="info.main" style={{backgroundColor:"#FF5050", padding:"3px", borderRadius:"5px", marginLeft:"10px", cursor:"pointer"}}>{selectedProduct.storeObj.name}</Typography>
+                </Link>
                 <Tooltip title="Verified">
-                    <VerifiedIcon color="success" style={{fontSize:"30px", marginTop:"5px"}}/>
+                    <VerifiedIcon color="success" style={{fontSize:"30px", marginTop:"5px", marginLeft:"10px"}}/>
                 </Tooltip>
+                
             </Box>
             <Box className="row">
-                <Typography variant="h6" color="primary" style={{marginLeft:"20px"}}>{selectedProduct.datePosted}</Typography>
+                <Typography variant="h6" color="primary" style={{marginLeft:"20px"}}>{ new Date(Number(selectedProduct.datePosted)).toISOString().split("T")[0]}</Typography>
                 <Box style={{marginLeft:"20px", maxWidth:"100%"}} className="row">
                     <Typography variant="h6" color="primary">From the brand:</Typography>
                     <Typography variant="h6" color="info.light" style={{marginLeft:"20px"}}>{selectedProduct.brand}</Typography>
@@ -108,7 +110,7 @@ const ProductView = ({selectedProduct}) => {
                             <Box className="row">
                                 <Avatar style={{color:"#f2f2f2", backgroundColor:"#1978A5"}}>{e.name.toUpperCase()[0]}</Avatar>
                                 <Typography variant="h5" color="primary" style={{margin:"5px"}}>{e.name}</Typography>
-                                <Typography variant="body1" style={{marginTop:"10px"}}>({e.date})</Typography>
+                                <Typography variant="body1" style={{marginTop:"10px"}}>({new Date(Number(e.date)).toISOString().split("T")[0]})</Typography>
                             </Box>
                             <Box className="row">
                                 <Typography variant="h6" color="primary" style={{margin:"5px"}}>Rate:</Typography>

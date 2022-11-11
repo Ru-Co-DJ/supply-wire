@@ -17,6 +17,8 @@ import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import About from "./pages/About/About"
 import Contact from "./pages/Contact/Contact"
 import FAQ from "./pages/FAQ/FAQ"
+import Store from "./pages/Store/Store";
+import Stores from "./pages/Stores/Stores";
 
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
             <Route path="/contact" element={<Contact/>}/>
             <Route path="/faq" element={<FAQ/>}/>
             <Route path="*" element={<Missing/>}/>
+            <Route path="/store/:id" element={<Store/>}/>
+            <Route path="/stores" element={<Stores/>}/>
           </Routes>
           <Footer/>
         </BrowserRouter>

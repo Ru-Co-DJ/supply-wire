@@ -1,0 +1,68 @@
+.storeBanner{
+    filter: blur(3px);
+}
+
+.storeContainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 50px;
+}
+
+.storeHead{
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    margin: 30px;
+   
+}
+
+.storeImage{
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.5);
+}
+
+.storeInfo{
+    margin-left: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.storeProducts{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.storeReviews{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.onStoreReview{
+    width: 100%;
+    margin: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.5);
+}
