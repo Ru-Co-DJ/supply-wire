@@ -111,3 +111,13 @@ export const getStores = gql`
         }
     }
 ` 
+
+export const login = gql`
+    query login($email: String!, $password: String!){
+        user(email: $email, password: $password){
+            fullName
+            location
+            store
+        }
+    }
+`

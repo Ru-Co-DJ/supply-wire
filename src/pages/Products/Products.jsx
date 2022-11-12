@@ -45,7 +45,7 @@ const Products = () => {
           <Box className="categoryDisplay">
             {
               filtered?.length ? (
-                  <Typography variant="h6" color="info.main" style={{marginBottom: "20px"}}>{category}</Typography>
+                  <Typography variant="h6" color="info.main" style={{marginBottom: "20px"}}>{category} products</Typography>
               ):(
                 <Typography variant="h6" color="info.main" style={{marginBottom: "20px"}}>No Data</Typography>
               )

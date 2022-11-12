@@ -20,7 +20,9 @@ const ProductView = ({selectedProduct}) => {
         <Box className="viewProductName">
             <Typography variant="h4" color="info.main" style={{marginLeft:"20px", padding:"5px", borderRadius:"5px",backgroundColor:"#05716C"}}>{selectedProduct.name}</Typography>
             <Typography variant="h6" color="info.light" style={{marginLeft:"5px"}}>{selectedProduct.serie}</Typography>
-            <Chip label={selectedProduct.category} color="secondary" style={{marginLeft:"20%"}}/>
+            <Link to={`/products/${selectedProduct.category}`} className="link" >
+                <Chip label={selectedProduct.category} color="secondary" style={{marginLeft:"20%", cursor:"pointer"}}/>
+            </Link>
         </Box>
         <Typography variant="h3" color="primary" style={{marginBottom:"10px"}}>Overview</Typography>
         <Box className='productImages'>

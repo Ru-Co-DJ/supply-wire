@@ -7,7 +7,6 @@ import { useStateContext } from '../../utils/context/ContextProvider'
 
 const Navbar = () => {
   const {account} = useStateContext();
-  
   return (
     <Box style={{height:"65px", maxHeight:"100%"}}>
     <AppBar elevation={0} color="primary" position="relative" style={{marginBottom:"20px", height:"60px", position:"fixed",zIndex:"15"}}>
@@ -36,7 +35,7 @@ const Navbar = () => {
           </Box>
         </Box>
         {
-          !account.name ? (
+          !account?.fullName ? (
             <Box className='row'>
               <Link to="/auth/login" className="link">
                 <Button variant="text" style={{marginRight:"10px"}}>
@@ -51,8 +50,8 @@ const Navbar = () => {
               </Box>
           ):(
             <Box className="row">
-              <Avatar >{account.name.toUpperCase()[0]}</Avatar>
-              <Typography variant="h5" style={{margin:"5px"}}>{account.name}</Typography>
+              <Avatar sx={{ width: 34, height: 34 }} style={{marginTop:"3px"}}>{account.fullName.toUpperCase()[0]}</Avatar>
+              <Typography variant="h6" style={{margin:"5px"}}>{account.fullName}</Typography>
             </Box>
           )
         }

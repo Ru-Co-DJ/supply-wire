@@ -1,15 +1,37 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import "./auth.css"
 import { Box, Typography, TextField, Button, Select, MenuItem, InputLabel, FormControl, FormControlLabel, Checkbox } from '@mui/material'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useStateContext } from '../../utils/context/ContextProvider'
+import { login } from '../../api'
+import { useLazyQuery, useQuery } from '@apollo/client'
+
 
 const Auth = () => {
   const [choice, setChoice]=useState("")
   const location = useLocation()
+  const navigate = useNavigate()
   const path = location.pathname.split("/")[2];
-  const {setAccount} = useStateContext()
+  const {account, setAccount} = useStateContext()
   const [cred, setCred] = useState({})
+  const [loginClick, setLoginClick] = useState(false)
+
+  const [loadLogin, { called, loading, error, data }] = useLazyQuery(login,{variables:{email:cred.email, password:cred.password}});
+  // const {loading, error, data} = useQuery(login, {variables:{email:cred.email, password:cred.password}})
+  
+  useEffect(()=>{
+    if(called && !loading){
+      setAccount(data.user)
+      localStorage.setItem("account",JSON.stringify(data.user))
+      navigate("/",{replace:true})
+    }
+  },[called, data])
+
+
+
+
+
+
   return (
     <Box className="authContainer">
       {
@@ -19,9 +41,9 @@ const Auth = () => {
               <Typography variant="h4" color="primary">Login</Typography>
             </Box>
             <Box className="authInpLogin">
-              <TextField label="email" variant="standard" style={{marginTop:"20px"}} onChange={(e)=>setCred(prev=>({...prev,name:e.target.value}))}/>
+              <TextField label="email" variant="standard" style={{marginTop:"20px"}} onChange={(e)=>setCred(prev=>({...prev,email:e.target.value}))}/>
               <TextField label="password" type="password" variant="standard" style={{marginTop:"20px"}} onChange={(e)=>setCred(prev=>({...prev,password:e.target.value}))}/>
-              <Button variant='contained' style={{marginTop:"20px", marginBottom:"30px"}} onClick={()=>{setAccount(cred)}}>Login</Button>
+              <Button variant='contained' style={{marginTop:"20px", marginBottom:"30px"}} onClick={()=>{loadLogin()}}>Login</Button>
             </Box>
           </>
         ):(
