@@ -11,7 +11,6 @@ import Products from "./pages/Products/Products";
 import Missing from "./pages/Missing/Missing";
 import Account from "./pages/Account/Account";
 import Theme from "./utils/Theme/Theme";
-import AddProduct from "./pages/AddProduct/AddProduct";
 import { ContextProvider } from "./utils/context/ContextProvider";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import About from "./pages/About/About"
@@ -36,7 +35,6 @@ function App() {
             <Route path="/customer-service" element={<CustomerService/>}/>
             <Route path="/categories" element={<Categories/>}/>
             <Route path="/products/:d" element={<Products/>}/>
-            <Route path="/add-product" element={<AddProduct/>}/>
             <Route path="/product/:id" element={<SingleProduct/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/contact" element={<Contact/>}/>

@@ -6,7 +6,6 @@ import "./stores.css"
 import { Link } from 'react-router-dom'
 const Stores = () => {
     const {loading, error, data} = useQuery(getStores);
-    console.log(data)
     
     
     

@@ -7,14 +7,17 @@ import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import HelpIcon from '@mui/icons-material/Help';
 import LanguageIcon from '@mui/icons-material/Language';
 import SettingsIcon from '@mui/icons-material/Settings';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import {Link} from "react-router-dom"
+import StorefrontIcon from '@mui/icons-material/Storefront';import {Link} from "react-router-dom"
+import {useStateContext} from "../../utils/context/ContextProvider"
+
 const SideTool = () => {
+  const {account} = useStateContext()
+
   return (
     <Box className="sideContainer">
         <Box>
-          <Link to="/add-product" className="link"><AddCircleIcon style={{fontSize:"40px", color:"#fff"}}/></Link>
-          <Typography variant="subtitle1" color="info.main">Add Product</Typography>
+          <Link to={account.store ? `/store/${account.store}` : "/store/add"} className="link"><StorefrontIcon style={{fontSize:"40px", color:"#fff"}}/></Link>
+          <Typography variant="subtitle1" color="info.main">Store</Typography>
         </Box>
         <Divider color="#fff"/>
         <Box>

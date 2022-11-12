@@ -2,33 +2,49 @@ import React,{useState, useEffect} from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import "./store.css"
-import {Box, Typography, Card, Avatar, Chip, Tooltip, Rating, Backdrop, CircularProgress, Divider} from "@mui/material"
+import {Box, Typography, Card, Avatar, Chip, Tooltip, Rating, Backdrop, CircularProgress, Divider, Dialog, DialogTitle, DialogContent, DialogActions, Button, Checkbox, FormControlLabel} from "@mui/material"
 import { getStore } from '../../api'
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import StoreProduct from '../../components/StoreProduct/StoreProduct'
 import SellIcon from '@mui/icons-material/Sell';
-
+import {useStateContext} from "../../utils/context/ContextProvider"
+import AddProduct from '../../components/AddProduct/AddProduct'
 
 
 
 const Store = () => {
 
   const path = useLocation().pathname.split("/")
-  const {loading, error, data} = useQuery(getStore,{variables:{id:path[path.length-1]}})
+  const storeID = path[path.length-1]
+  const {account} = useStateContext()
+  const {loading, error, data} = useQuery(getStore,{variables:{id:storeID}})
   const [store, setStore] = useState({})
-
+  const [addProduct, setAddProduct] = useState(false)
+  const [newProduct, setNewProduct] = useState({})
   useEffect(()=>{
     data && setStore(data.store)
   },[data])
-  console.log(store)
-
+  console.log(newProduct)
   return (
-    <>
+    <Box style={{minHeight:"100vh"}}>
     {(!store.rate) ? (
       <Backdrop sx={{color:"#fff", zIndex:"10"}} open={loading}>
         <CircularProgress color="inherit"/>
       </Backdrop>
     ):(
+      <>
+      {
+        account.store === storeID && (
+          <>
+            <Box className="storeControl" onClick={()=>{setAddProduct(true)}}>
+              <Typography variant="h6" color="primary">add Product</Typography>
+            </Box>
+            <Box style={{marginLeft:"20px"}}>
+              <Typography variant="h4" color="primary">Welcome Back <span style={{fontWeight:"bold"}}>{account.fullName}</span>!</Typography>
+            </Box>
+          </>
+        )
+      }
       <Box className="storeContainer">
         <Box className="storeHead">
           <img src={store.image} alt={store.name} width="200px" className="storeImage"/>
@@ -67,7 +83,6 @@ const Store = () => {
           }
         </Box>
         <Divider style={{width:"80%"}}><Typography variant="h4" color="info.light" style={{cursor:"pointer"}}>Reviews</Typography></Divider>
-
         <Box className="storeReviews">
           {
             store.reviews.map((e,i)=>{
@@ -93,11 +108,32 @@ const Store = () => {
             })
           }
         </Box>
-    </Box>
+      </Box>
+      <Box style={{width:"100%"}}>
+        <Dialog open={addProduct} onClose={()=>setAddProduct(false)} maxWidth={"lg"}>
+            <DialogTitle style={{backgroundColor:"#f2f2f2", color:"#0E2A47"}}>
+              Add a new product
+            </DialogTitle>
+            <DialogContent>
+              <AddProduct setNewProduct={setNewProduct} newProduct={newProduct}/>
+            </DialogContent>
+            <DialogActions style={{display:"flex", justifyContent:"space-between", backgroundColor:"#f2f2f2"}}>
+              <FormControlLabel control={<Checkbox  color="primary"/>} label="I am the owner of this product and this information are CORRECT" />
+              <Box>
+                <Button variant="contained" color="warning" onClick={()=>{
+                  setAddProduct(false)
+                  setNewProduct({})
+                }} style={{margin:"10px"}}>Cancel</Button>
+                <Button variant="contained" color="success" onClick={()=>{}} style={{margin:"10px"}}>Submit</Button>
+              </Box>
+            </DialogActions>
+        </Dialog>
+      </Box>
+    </>
     )
   }
     
-    </>
+    </Box>
   )
 }
 
