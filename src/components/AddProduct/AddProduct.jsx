@@ -4,7 +4,15 @@ import {Box, Typography, Tooltip, TextField, FormControl, InputLabel, Select, Me
 
 
 
-const AddProduct = ({setNewProduct, newProduct}) => {
+const AddProduct = ({setNewProduct, newProduct, account}) => {
+
+
+    setNewProduct(prev=>({...prev, datePosted: new Date()}))
+    setNewProduct(prev=>({...prev, sales: 0}))
+    setNewProduct(prev=>({...prev, reviews: []}))
+    setNewProduct(prev=>({...prev, rate: 0}))
+    setNewProduct(prev=>({...prev, store: account.store}))
+
   return (
     <Box className="addProductContainer">
         <Box className="addProductForm">
@@ -25,7 +33,7 @@ const AddProduct = ({setNewProduct, newProduct}) => {
                     <Typography variant="h5" color="primary">Product Category</Typography>
                     <FormControl variant="standard" fullWidth>
                         <InputLabel>Product Category</InputLabel>
-                        <Select value={newProduct.category} onChange={(e)=>{setNewProduct(prev=>({...prev,category:e.target.value}))}}>
+                        <Select value={newProduct.category || "Laptop"} onChange={(e)=>{setNewProduct(prev=>({...prev,category:e.target.value}))}}>
                             <MenuItem value={"Laptop"}>Laptop</MenuItem>
                             <MenuItem value={"Router"}>Router</MenuItem>
                             <MenuItem value={"Printer"}>Printer</MenuItem>
@@ -51,8 +59,13 @@ const AddProduct = ({setNewProduct, newProduct}) => {
                     <Typography variant="body1">keep the name under 5 words</Typography>
                 </Box>
                 <Box>
+                <Typography variant="h5" color="primary">Serie</Typography>
+                    <TextField fullWidth variant="standard" label="Product Serie" onChange={(e)=>{setNewProduct(prev=>({...prev,serie:e.target.value}))}}/>
+                    <Typography variant="body1">keep the name under 5 words</Typography>
+                </Box>
+                <Box>
                     <Typography variant="h5" color="primary">Product Images</Typography>
-                    <input type="file" name="fileIm" multiple onChange={()=>{}}/>
+                    <input type="file" name="fileIm" multiple onChange={(e)=>{setNewProduct(prev=>({...prev,images:e.target.files}))}}/>
                     <Typography variant="body1">Select at least 3 images</Typography>
                 </Box>
                 <Box>

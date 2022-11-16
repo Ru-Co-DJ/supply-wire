@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { useQuery } from '@apollo/client'
+import { useQuery, useLazyQuery } from '@apollo/client'
 import "./store.css"
 import {Box, Typography, Card, Avatar, Chip, Tooltip, Rating, Backdrop, CircularProgress, Divider, Dialog, DialogTitle, DialogContent, DialogActions, Button, Checkbox, FormControlLabel} from "@mui/material"
 import { getStore } from '../../api'
@@ -14,6 +14,11 @@ import AddProduct from '../../components/AddProduct/AddProduct'
 
 const Store = () => {
 
+
+  const handleSubmit = ()=>{
+    console.log(newProduct)
+  }
+
   const path = useLocation().pathname.split("/")
   const storeID = path[path.length-1]
   const {account} = useStateContext()
@@ -24,7 +29,8 @@ const Store = () => {
   useEffect(()=>{
     data && setStore(data.store)
   },[data])
-  console.log(newProduct)
+
+  
   return (
     <Box style={{minHeight:"100vh"}}>
     {(!store.rate) ? (
@@ -115,7 +121,7 @@ const Store = () => {
               Add a new product
             </DialogTitle>
             <DialogContent>
-              <AddProduct setNewProduct={setNewProduct} newProduct={newProduct}/>
+              <AddProduct setNewProduct={setNewProduct} newProduct={newProduct} account={account}/>
             </DialogContent>
             <DialogActions style={{display:"flex", justifyContent:"space-between", backgroundColor:"#f2f2f2"}}>
               <FormControlLabel control={<Checkbox  color="primary"/>} label="I am the owner of this product and this information are CORRECT" />
@@ -124,7 +130,7 @@ const Store = () => {
                   setAddProduct(false)
                   setNewProduct({})
                 }} style={{margin:"10px"}}>Cancel</Button>
-                <Button variant="contained" color="success" onClick={()=>{}} style={{margin:"10px"}}>Submit</Button>
+                <Button variant="contained" color="success" onClick={handleSubmit} style={{margin:"10px"}}>Submit</Button>
               </Box>
             </DialogActions>
         </Dialog>
