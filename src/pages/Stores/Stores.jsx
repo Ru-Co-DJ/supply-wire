@@ -21,7 +21,7 @@ const Stores = () => {
                     {
                         data.stores?.map((e,i)=>{
                             return (
-                                <Box className="singleStore">
+                                <Box className="singleStore" key={i}>
                                     <Card style={{width:"280px",maxHeight:"350px", backgroundColor:"#0E2A47", padding:"5px"}} elevation={10}>
                                         <CardHeader
                                             style={{color:"#f2f2f2"}}

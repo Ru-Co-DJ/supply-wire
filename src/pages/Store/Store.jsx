@@ -1,9 +1,9 @@
 import React,{useState, useEffect} from 'react'
-import { useLocation, Link } from 'react-router-dom'
-import { useQuery, useLazyQuery } from '@apollo/client'
+import { useLocation } from 'react-router-dom'
+import { useQuery, useMutation } from '@apollo/client'
 import "./store.css"
-import {Box, Typography, Card, Avatar, Chip, Tooltip, Rating, Backdrop, CircularProgress, Divider, Dialog, DialogTitle, DialogContent, DialogActions, Button, Checkbox, FormControlLabel} from "@mui/material"
-import { getStore } from '../../api'
+import {Box, Typography, Avatar, Tooltip, Rating, Backdrop, CircularProgress, Divider, Dialog, DialogTitle, DialogContent, DialogActions, Button, Checkbox, FormControlLabel} from "@mui/material"
+import { getStore, storeImages, addProductGQL} from '../../api'
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import StoreProduct from '../../components/StoreProduct/StoreProduct'
 import SellIcon from '@mui/icons-material/Sell';
@@ -11,13 +11,8 @@ import {useStateContext} from "../../utils/context/ContextProvider"
 import AddProduct from '../../components/AddProduct/AddProduct'
 
 
-
 const Store = () => {
 
-
-  const handleSubmit = ()=>{
-    console.log(newProduct)
-  }
 
   const path = useLocation().pathname.split("/")
   const storeID = path[path.length-1]
@@ -26,15 +21,40 @@ const Store = () => {
   const [store, setStore] = useState({})
   const [addProduct, setAddProduct] = useState(false)
   const [newProduct, setNewProduct] = useState({})
+  const [addNewProduct, setAddNewProduct] = useState(false)
+  const [waiting, setWaiting] = useState(false)
+
+  const [addProductMutation, { dataM, loadingM, errorM }] = useMutation(addProductGQL);
+
   useEffect(()=>{
     data && setStore(data.store)
   },[data])
 
+  useEffect(()=>{
+      if(addNewProduct){
+        setWaiting(true)
+        console.log(newProduct)
+        const imagesForm = new FormData()
+        Object.values(newProduct.images).forEach(e=>{
+          imagesForm.append("images",e,e.name)
+        })
+
+        storeImages(imagesForm).then(res=>{
+          // setNewProduct(prev=>({...prev,images:res}))
+          let holder = {...newProduct, images:res}
+          addProductMutation({ variables:{ ...holder } })  
+        })
+        setAddNewProduct(false)
+    }
+    setWaiting(false)
+  },[addNewProduct])
+
   
+
   return (
     <Box style={{minHeight:"100vh"}}>
     {(!store.rate) ? (
-      <Backdrop sx={{color:"#fff", zIndex:"10"}} open={loading}>
+      <Backdrop sx={{color:"#fff", zIndex:"10"}} open={loading || waiting}>
         <CircularProgress color="inherit"/>
       </Backdrop>
     ):(
@@ -130,7 +150,10 @@ const Store = () => {
                   setAddProduct(false)
                   setNewProduct({})
                 }} style={{margin:"10px"}}>Cancel</Button>
-                <Button variant="contained" color="success" onClick={handleSubmit} style={{margin:"10px"}}>Submit</Button>
+                <Button variant="contained" color="success" onClick={()=>{
+                  setAddNewProduct(true)
+                  setAddProduct(false)
+                }} style={{margin:"10px"}}>Submit</Button>
               </Box>
             </DialogActions>
         </Dialog>

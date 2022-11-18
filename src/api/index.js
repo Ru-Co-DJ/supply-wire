@@ -121,3 +121,40 @@ export const login = gql`
         }
     }
 `
+
+export const addProductGQL = gql`
+  mutation AddProduct(
+    $name:String!,
+    $price:Float!,
+    $description:String!,
+    $datePosted:String!,
+    $quantity:Int!,
+    $color:String!,
+    $category:String!,
+    $images:[String]!,
+    $serie:String!,
+    $store:ID!,
+    $rate:Float!,
+    $brand:String!,
+    $sales:Int!,
+    $reviews: [String]!
+  ) {
+    AddProduct(name:$name, price:$price, description:$description, datePosted:$datePosted, quantity:$quantity, color:$color, category:$category, images:$images, serie:$serie, store:$store, rate:$rate, brand:$brand, sales:$sales, reviews:$reviews) {
+        name
+    }
+  }
+`;
+
+export const storeImages = async (images)=>{
+    try {
+        const result = await axios.post("http://localhost:5001/store-images",images,{
+            headers:{
+                "Content-Type": "multipart/form-data"
+            }
+        })
+        return result.data //? array of images urls
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}

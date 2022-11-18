@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import "./addproduct.css"
 import {Box, Typography, Tooltip, TextField, FormControl, InputLabel, Select, MenuItem, Checkbox, FormControlLabel, Button} from "@mui/material"
 
@@ -7,11 +7,13 @@ import {Box, Typography, Tooltip, TextField, FormControl, InputLabel, Select, Me
 const AddProduct = ({setNewProduct, newProduct, account}) => {
 
 
-    setNewProduct(prev=>({...prev, datePosted: new Date()}))
-    setNewProduct(prev=>({...prev, sales: 0}))
-    setNewProduct(prev=>({...prev, reviews: []}))
-    setNewProduct(prev=>({...prev, rate: 0}))
-    setNewProduct(prev=>({...prev, store: account.store}))
+    useEffect(()=>{
+        setNewProduct(prev=>({...prev, datePosted: new Date()}))
+        setNewProduct(prev=>({...prev, sales: 0}))
+        setNewProduct(prev=>({...prev, reviews: []}))
+        setNewProduct(prev=>({...prev, rate: 0}))
+        setNewProduct(prev=>({...prev, store: account.store}))
+    },[])    
 
   return (
     <Box className="addProductContainer">
