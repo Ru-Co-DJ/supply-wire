@@ -1,33 +1,40 @@
+.wholePage{
+    width: 80%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    position: fixed;
+    left: 0;
+    top: 60px;
+}
+
 .sideContainer{
-    width: 10%;
-    height: 80%;
-    background-color: #05716C;
+    width: 20%;
+    height: 100%;
+    background-color: #fff;
     display: flex;
     z-index: 10;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
     position: fixed;
-    left: 0;
-    border-radius: 5px;
-    box-shadow: 0px 0px 9px rgba(0,0,0,1);
+    right: 0;
+    top:60px;
 }
 
 .sideContainer > *{
+    padding: 5px;
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
     border-radius: 5px;
-    width: 90%;
     cursor: pointer;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 10px;
 }
 .sideContainer > *:hover{
-    background-color: #0E2A47;
-    color: #fff;
+    background-color: rgba(179, 179, 179);
     transition: 300ms;
 }

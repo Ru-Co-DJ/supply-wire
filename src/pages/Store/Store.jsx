@@ -12,8 +12,6 @@ import AddProduct from '../../components/AddProduct/AddProduct'
 
 
 const Store = () => {
-
-
   const path = useLocation().pathname.split("/")
   const storeID = path[path.length-1]
   const {account} = useStateContext()
@@ -23,7 +21,6 @@ const Store = () => {
   const [newProduct, setNewProduct] = useState({})
   const [addNewProduct, setAddNewProduct] = useState(false)
   const [waiting, setWaiting] = useState(false)
-
   const [addProductMutation, { dataM, loadingM, errorM }] = useMutation(addProductGQL);
 
   useEffect(()=>{
@@ -48,8 +45,6 @@ const Store = () => {
     }
     setWaiting(false)
   },[addNewProduct])
-
-  
 
   return (
     <Box style={{minHeight:"100vh"}}>

@@ -1,138 +1,113 @@
-.viewProductContainer{
-    max-width: 100%;
+.productContainer{
+    width: 100%;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
-    overflow: hidden;
 }
 
+.imagesHolder{
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    overflow-x: scroll;
+}
 
-.productImages{
+.productImage{
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.productOneImage{
+    margin: 10px;
+}
+
+.overview{
+    margin: 10px;
+}
+
+.description{
+    margin: 10px;
+
+}
+
+.pColor{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-top: 2px;
+}
+
+.orderActions{
+    margin: 10px;
+}
+
+.productReviewsContainer{
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
     flex-wrap: wrap;
-    margin-bottom: 30px;
 }
 
-.imageView{
-    height: 200px;
+.oneReview{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
     margin: 10px;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 0px 9px rgba(0,0,0,0.5);
-    overflow: hidden;
+    padding: 10px;
 }
 
-.viewProductName{
+.shareProduct{
     width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    flex-direction: row;
-    margin-bottom: 20px;
-}
-
-.viewProductStore{
-    max-width: 100%;
-    margin-left: 30px;
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.viewProductDes{
-    max-width: 100%;
-    margin-left: 15px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-}
-
-.viewProductRate{
-    width: 100%;
-    margin-left: 30px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.viewProductReviews{
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
     margin-bottom: 20px;
-    margin-top: 20px;
-
 }
 
-.oneReview{
-    width: 100%;
-    margin: 20px;
-    background-color: #fff;
+.share{
+    border: 1px solid #0E2A47;
+    border-radius: 5px;
+    margin-left: 10px;
     padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0px 0px 9px rgba(0,0,0,0.5);
+    cursor: pointer;
 }
 
-.viewDetails{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.viewPrice{
-    border: 1px solid #05716C;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
-}
-
-.viewProductColor{
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin: 5px;
-}
-
-.viewProductShopControl{
-    position: fixed;
-    right: 10px;
-    width: 22%;
-    height: 50%;
+.share:hover{
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 9px rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    overflow-y: scroll;
 }
 
 .addProductReview{
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 10px;
-    box-shadow: 0px 0px 9px rgba(0,0,0,0.2);
+
+}
+
+.similarProducts{
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

@@ -10,50 +10,49 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import StorefrontIcon from '@mui/icons-material/Storefront';import {Link} from "react-router-dom"
 import {useStateContext} from "../../utils/context/ContextProvider"
 
-const SideTool = () => {
+const SideTool = ({setOpenMenu}) => {
   const {account} = useStateContext()
 
   return (
-    <Box className="sideContainer">
+    <>
+      <Box className="wholePage" onClick={()=>setOpenMenu(false)}/>
+      <Box className="sideContainer">
+        <Link to={account.store ? `/store/${account.store}` : "/store/add"} className="link row" onClick={()=>setOpenMenu(false)}>
+          <Box className='row'>
+            <StorefrontIcon style={{fontSize:"40px", color:"#0E2A47"}}/>
+            <Typography variant="subtitle1" color="primary" style={{margin:"5px"}}>My Store</Typography>
+          </Box>
+        </Link>
         <Box>
-          <Link to={account.store ? `/store/${account.store}` : "/store/add"} className="link"><StorefrontIcon style={{fontSize:"40px", color:"#fff"}}/></Link>
-          <Typography variant="subtitle1" color="info.main">Store</Typography>
+          <ShoppingCartIcon style={{fontSize:"40px", color:"#0E2A47"}}/>
+          <Typography variant="subtitle1" color="primary" style={{margin:"5px"}}>Cart</Typography>
         </Box>
-        <Divider color="#fff"/>
         <Box>
-          <ShoppingCartIcon style={{fontSize:"40px", color:"#fff"}}/>
-          <Typography variant="subtitle1" color="info.main">Cart</Typography>
+          <NotificationsIcon style={{fontSize:"40px", color:"#0E2A47"}}/>
+          <Typography variant="subtitle" color="primary" style={{margin:"5px"}}>Notifications</Typography>
         </Box>
-        <Divider color="#fff"/>
         <Box>
-          <NotificationsIcon style={{fontSize:"40px", color:"#fff"}}/>
-          <Typography variant="subtitle" color="info.main">Notification</Typography>
+          <SupportAgentIcon style={{fontSize:"40px", color:"#0E2A47"}}/>
+          <Typography variant="subtitle" color="primary" style={{margin:"5px"}}>Support</Typography>
         </Box>
-        <Divider color="#fff"/>
 
         <Box>
-          <SupportAgentIcon style={{fontSize:"40px", color:"#fff"}}/>
-          <Typography variant="subtitle" color="info.main">Support</Typography>
+          <HelpIcon style={{fontSize:"40px", color:"#0E2A47"}}/>
+          <Typography variant="subtitle" color="primary" style={{margin:"5px"}}>Help</Typography>
         </Box>
-        <Divider color="#fff"/>
 
         <Box>
-          <HelpIcon style={{fontSize:"40px", color:"#fff"}}/>
-          <Typography variant="subtitle" color="info.main">Help</Typography>
+          <LanguageIcon style={{fontSize:"40px", color:"#0E2A47"}}/>
+          <Typography variant="subtitle" color="primary" style={{margin:"5px"}}>Language</Typography>
         </Box>
-        <Divider color="#fff"/>
 
         <Box>
-          <LanguageIcon style={{fontSize:"40px", color:"#fff"}}/>
-          <Typography variant="subtitle" color="info.main">Language</Typography>
-        </Box>
-        <Divider color="#fff"/>
-
-        <Box>
-          <SettingsIcon style={{fontSize:"40px", color:"#fff"}}/>
-          <Typography variant="subtitle" color="info.main">Settings</Typography>
+          <SettingsIcon style={{fontSize:"40px", color:"#0E2A47"}}/>
+          <Typography variant="subtitle" color="primary" style={{margin:"5px"}}>Settings</Typography>
         </Box>
     </Box>
+    </>
+    
   )
 }
 

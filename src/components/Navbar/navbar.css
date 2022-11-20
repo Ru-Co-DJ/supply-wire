@@ -2,10 +2,9 @@
     max-width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: row;
     flex-wrap: nowrap;
-    overflow: scroll;
 }
 
 .row{

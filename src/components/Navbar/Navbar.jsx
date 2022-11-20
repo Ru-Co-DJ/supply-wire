@@ -1,15 +1,19 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import "./navbar.css"
 import { Box, Typography, AppBar, Toolbar, Button, Avatar, Tooltip } from '@mui/material'
 import { Link } from 'react-router-dom'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import { useStateContext } from '../../utils/context/ContextProvider'
+import MenuIcon from '@mui/icons-material/Menu';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import SideTool from '../SideTool/SideTool';
 
 const Navbar = () => {
   const {account} = useStateContext();
+  const [openMenu, setOpenMenu] = useState(false)
   return (
-    <Box style={{height:"65px", maxHeight:"100%"}}>
-    <AppBar elevation={0} color="primary" position="relative" style={{marginBottom:"20px", height:"60px", position:"fixed",zIndex:"15"}}>
+    <Box style={{maxHeight:"100%"}}>
+    <AppBar elevation={0} color="primary" position="sticky" style={{marginBottom:"20px", height:"60px", position:"fixed",zIndex:"15"}}>
       <Toolbar className="navContainer">
         <Box className="row">
           <Link to="/" className="link">
@@ -18,22 +22,23 @@ const Navbar = () => {
         </Box>
         <Box className="row">
           <Box className="navOptions">
-            <Typography variant="h6" color="info.main">Today's sales</Typography>
+            <Typography variant="subtitle1" color="info.main">Today's sales</Typography>
           </Box>
           <Box className="navOptions">
           <Link to="/products/all" className="link">
-            <Typography variant="h6" color="info.main">By category</Typography>
+            <Typography variant="subtitle1" color="info.main">By category</Typography>
           </Link>
           </Box>
           <Box className="navOptions">
-            <Typography variant="h6" color="info.main">Customer service</Typography>
+            <Typography variant="subtitle1" color="info.main">Customer service</Typography>
           </Box>
           <Box className="navOptions">
             <Link to="/stores" className="link">
-              <Typography variant="h6" color="info.main">Stores</Typography>
+              <Typography variant="subtitle1" color="info.main">Stores</Typography>
             </Link>
           </Box>
         </Box>
+        <Box className="row">
         {
           !account?.fullName ? (
             <Box className='row'>
@@ -50,11 +55,25 @@ const Navbar = () => {
               </Box>
           ):(
             <Box className="row">
-              <Avatar sx={{ width: 34, height: 34 }} style={{marginTop:"3px"}}>{account.fullName.toUpperCase()[0]}</Avatar>
-              <Typography variant="h6" style={{margin:"5px"}}>{account.fullName}</Typography>
+              <Avatar sx={{ width: 30, height: 30 }} style={{marginTop:"3px"}}>{account.fullName.toUpperCase()[0]}</Avatar>
+              <Typography variant="subtitle1" style={{margin:"5px"}}>{account.fullName}</Typography>
             </Box>
           )
         }
+        {
+          !openMenu ? (
+            <>
+              <MenuIcon onClick={()=>setOpenMenu(true)} style={{cursor:"pointer", marginTop:"10px"}}/>
+            </>
+          ):(
+            <>
+              <MenuOpenIcon onClick={()=>setOpenMenu(false)} style={{cursor:"pointer", marginTop:"10px"}}/>
+              <SideTool setOpenMenu={setOpenMenu}/>
+            </>
+          )
+        }
+        </Box>
+
       </Toolbar>
     </AppBar>
     <Box className="goUp">

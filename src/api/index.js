@@ -56,16 +56,9 @@ export const getProductsGQL = gql`
             id
             name
             price
-            datePosted
             images
+            rate
             category
-            storeObj{
-                name
-            }
-            sales
-            reviews{
-                name
-            }
         }
     }
 `
