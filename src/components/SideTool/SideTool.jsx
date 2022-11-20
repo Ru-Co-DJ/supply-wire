@@ -1,5 +1,5 @@
 import React from 'react'
-import {Box, Typography, Divider} from "@mui/material";
+import {Box, Typography, Divider, Badge} from "@mui/material";
 import "./sidetool.css"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -11,7 +11,7 @@ import StorefrontIcon from '@mui/icons-material/Storefront';import {Link} from "
 import {useStateContext} from "../../utils/context/ContextProvider"
 
 const SideTool = ({setOpenMenu}) => {
-  const {account} = useStateContext()
+  const {account,cart} = useStateContext()
 
   return (
     <>
@@ -24,8 +24,12 @@ const SideTool = ({setOpenMenu}) => {
           </Box>
         </Link>
         <Box>
-          <ShoppingCartIcon style={{fontSize:"40px", color:"#0E2A47"}}/>
-          <Typography variant="subtitle1" color="primary" style={{margin:"5px"}}>Cart</Typography>
+          <Link to="cart" className="link row">
+            <Badge badgeContent={cart.length} color="secondary">
+              <ShoppingCartIcon style={{fontSize:"40px", color:"#0E2A47"}}/>
+            </Badge>
+            <Typography variant="subtitle1" color="primary" style={{margin:"5px"}}>Cart</Typography>
+          </Link>
         </Box>
         <Box>
           <NotificationsIcon style={{fontSize:"40px", color:"#0E2A47"}}/>

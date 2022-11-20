@@ -18,6 +18,7 @@ import Contact from "./pages/Contact/Contact"
 import FAQ from "./pages/FAQ/FAQ"
 import Store from "./pages/Store/Store";
 import Stores from "./pages/Stores/Stores";
+import Cart from "./pages/Cart/Cart";
 
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
             <Route path="*" element={<Missing/>}/>
             <Route path="/store/:id" element={<Store/>}/>
             <Route path="/stores" element={<Stores/>}/>
+            <Route path="/cart" element={<Cart/>}/>
+
           </Routes>
           <Footer/>
         </BrowserRouter>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react'
-import {Box, Typography, Card, Grid, Chip, Avatar, Divider, Rating, Button, FormControl, InputLabel, Select, MenuItem, TextField, Tooltip, Backdrop, CircularProgress} from "@mui/material";
+import {Box, Typography, Card, Grid, Chip, Avatar, Divider, Rating, Button, FormControl, InputLabel, Select, MenuItem, TextField, Tooltip, Backdrop, CircularProgress, Snackbar, Alert} from "@mui/material";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -9,12 +9,22 @@ import banner from "../../assets/images/home/banner.jpg"
 import { useQuery } from '@apollo/client'
 import { getProductsGQL } from "../../api"
 import HomeSold from '../HomeSold/HomeSold';
+import { useStateContext } from '../../utils/context/ContextProvider';
 
 const ProductView = ({selectedProduct}) => {
     const [image, setImage] = useState(selectedProduct.images[0])
     const {loading, error, data} = useQuery(getProductsGQL)
     const [similar, setSimilar] = useState([])
+    const {cart,setCart} = useStateContext()
+    const [toBuy, setToBuy] = useState({})
+    const [cartAdded, setCartAdded] = useState(false)
+    const [openSnack, setOpenSnack] = useState(false)
 
+    useEffect(()=>{
+        cartAdded && setOpenSnack(true)
+        localStorage.setItem("cart",JSON.stringify(cart))
+        setCartAdded(false)
+    },[cartAdded])
 
     useEffect(()=>{
         window.scrollTo({top:"0px"})
@@ -23,6 +33,7 @@ const ProductView = ({selectedProduct}) => {
     useEffect(()=>{
         data && selectedProduct && setSimilar(data.products.filter(e=>(e.category === selectedProduct.category)).splice(0,5))
     },[data])
+    console.log(cart)
   return (
     <Box className="productContainer">
         <Backdrop sx={{color:"#fff", zIndex:"10"}} open={loading}>
@@ -89,7 +100,11 @@ const ProductView = ({selectedProduct}) => {
                         <Box>
                             <FormControl variant="standard" style={{minWidth:"50%", margin:"10px"}}>
                                 <InputLabel>Quantity</InputLabel>
-                                <Select value={1} onChange={()=>{}}>
+                                <Select value={toBuy.quantity || 1} onChange={(e)=>{
+                                    setToBuy(prev=>({...prev, quantity:e.target.value}))
+                                    setToBuy(prev=>({...prev, product:selectedProduct.id}))
+                                    setToBuy(prev=>({...prev, totalPrice:selectedProduct.price*e.target.value.toFixed(2)}))
+                                    }}>
                                     {
                                         Array.from(Array(Math.floor(selectedProduct.quantity)),(_,i)=>i+1).map(e=>{
                                             return <MenuItem key={e} value={e}>{e}</MenuItem>
@@ -97,14 +112,16 @@ const ProductView = ({selectedProduct}) => {
                                     }
                                 </Select>
                             </FormControl>
-                            <Button color="secondary" variant="contained" style={{width:"90%", margin:"5px"}}>Add to Cart</Button>
+                            <Button color="secondary" variant="contained" style={{width:"90%", margin:"5px"}} onClick={()=>{
+                                    setCartAdded(true)
+                                    setCart(prev=>([...prev,toBuy]))
+                                }}>Add to Cart</Button>
                             <Button color="primary" variant="contained" style={{width:"90%", margin:"5px"}}>Buy Now</Button>
                             <Box style={{marginTop:"50px"}}>
                                 <Chip label="Terms of sale" color="success" style={{margin:"5px", cursor:"pointer"}}></Chip>
                                 <Chip label="Delivery details" color="warning" style={{margin:"5px", cursor:"pointer"}}></Chip>
                                 <Chip label="Secure transaction" color="success" style={{margin:"5px", cursor:"pointer"}}></Chip>
                                 <Chip label="Return policy" color="warning" style={{margin:"5px", cursor:"pointer"}}></Chip>
-
                             </Box>
                             <Typography variant="h6" color="primary" style={{margin:"5px"}}>Feel free to contact the store owner about this product</Typography>
                         </Box>
@@ -186,9 +203,16 @@ const ProductView = ({selectedProduct}) => {
                         }
                     </Box>
                 </Grid>
-            </Grid>
-            
+            </Grid>  
         </Box>
+        <Snackbar
+            style={{color:"green"}}
+            open={openSnack}
+            autoHideDuration={2500}
+            onClose={()=>setOpenSnack(false)}
+        >
+            <Alert severity="success" style={{backgroundColor:"green", color:"white"}}>Item added</Alert>
+        </Snackbar>
     </Box>
   )
 }
