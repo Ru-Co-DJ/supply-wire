@@ -13,14 +13,30 @@ const CartItem = ({item}) => {
     const {loading, error, data} = useQuery(getOneProductGQL, {variables:{id:item.product}})
     const [targetProduct, setTargetProduct] = useState({})
     const [open, setOpen] = useState(false)
-    const [productOnCart, setProductOnCart] = useState(item)
-    const {setCart} = useStateContext()
+    const [productOnChange, setProductOnChange] = useState(item)
+    const {cart, setCart} = useStateContext()
 
+    const handleChange = (e)=>{
+      setProductOnChange(prev=>({...prev, quantity:e.target.value}))
+      setProductOnChange(prev=>({...prev, totalPrice:Number(((targetProduct.price * e.target.value).toFixed(2)))}))
+      let cartBuffer = cart
+      cartBuffer.splice(cart.indexOf(cart.find(e=>e.product===targetProduct.id)),1,{quantity:e.target.value, totalPrice:Number((targetProduct.price * e.target.value).toFixed(2)),product:targetProduct.id})
+      localStorage.setItem("cart",JSON.stringify(cartBuffer))
+    }
+
+    const handleDelete = ()=>{
+      setCart(prev=>([...prev.filter(e=>e.product !== productOnChange.product)]))
+      localStorage.setItem("cart",JSON.stringify(cart?.filter(e=>e.product !== productOnChange?.product)))
+    }
     useEffect(()=>{
         data?.product && setTargetProduct(data.product)
-        console.log(data?.product)
     },[data, loading])
-  
+
+    useEffect(()=>{
+      setCart(JSON.parse(localStorage.getItem("cart")))
+    },[productOnChange])
+
+
     return (
         <>
         {
@@ -43,10 +59,7 @@ const CartItem = ({item}) => {
                                         <Box className="cartItemEditQty">
                                             <FormControl variant="standard" style={{width:"100%", margin:"10px"}}>
                                                 <InputLabel>Quantity</InputLabel>
-                                                <Select value={item.quantity} onChange={(e)=>{
-                                                setProductOnCart(prev=>({...prev, quantity:e.target.value}))
-                                                setProductOnCart(prev=>({...prev, totalPrice:item.quantity.price*e.target.value.toFixed(2)}))
-                                                }}>
+                                                <Select value={productOnChange.quantity} onChange={handleChange}>
                                                     {
                                                         Array.from(Array(Math.floor(targetProduct.quantity)),(_,i)=>i+1).map(e=>{
                                                             return <MenuItem key={e} value={e}>{e}</MenuItem>
@@ -56,9 +69,7 @@ const CartItem = ({item}) => {
                                             </FormControl>
                                         </Box>  
                                         <Box>
-                                            <ListItemButton onClick={()=>{
-                                                setCart(prev=>([...prev.filter(e=>e.product !== item.product)]))
-                                            }}>
+                                            <ListItemButton onClick={handleDelete}>
                                                 <ListItemIcon>
                                                 <DeleteIcon />
                                                 </ListItemIcon>
@@ -71,7 +82,7 @@ const CartItem = ({item}) => {
                     </Box>
                 </Box>
                 <Box className="cartItemPrices">
-                    <Typography variant="h6" color="secondary" style={{fontWeight:"bold"}}>${item.totalPrice}</Typography>
+                    <Typography variant="h6" color="secondary" style={{fontWeight:"bold"}}>${productOnChange.totalPrice}</Typography>
                 </Box>
             </Box>
             ):(

@@ -9,7 +9,7 @@ import StoreProduct from '../../components/StoreProduct/StoreProduct'
 import SellIcon from '@mui/icons-material/Sell';
 import {useStateContext} from "../../utils/context/ContextProvider"
 import AddProduct from '../../components/AddProduct/AddProduct'
-
+import banner from "../../assets/images/store/banner.jpg"
 
 const Store = () => {
   const path = useLocation().pathname.split("/")
@@ -47,7 +47,8 @@ const Store = () => {
   },[addNewProduct])
 
   return (
-    <Box style={{minHeight:"100vh"}}>
+    <Box style={{minHeight:"100vh",maxWidth:"100%"}}>
+    <img src={banner} alt="banner" width="100%"/>
     {(!store.rate) ? (
       <Backdrop sx={{color:"#fff", zIndex:"10"}} open={loading || waiting}>
         <CircularProgress color="inherit"/>
@@ -60,19 +61,21 @@ const Store = () => {
             <Box className="storeControl" onClick={()=>{setAddProduct(true)}}>
               <Typography variant="h6" color="primary">add Product</Typography>
             </Box>
-            <Box style={{marginLeft:"20px"}}>
+            <Box style={{marginLeft:"20%"}}>
               <Typography variant="h4" color="primary">Welcome Back <span style={{fontWeight:"bold"}}>{account.fullName}</span>!</Typography>
             </Box>
           </>
         )
       }
       <Box className="storeContainer">
+        <Box className="storeImage">
+          <img src={store.image} alt={store.name} width="12%" className="storeImageRound"/>
+          <Typography variant="h3" color="primary">{store.name}</Typography>
+        </Box>
         <Box className="storeHead">
-          <img src={store.image} alt={store.name} width="200px" className="storeImage"/>
           <Box className="storeInfo">
             <Box className="row">
-              <Typography variant="h5" color="primary">{store.name}</Typography>
-              <Typography variant="h6" color="primary" style={{marginLeft:"100px"}}>Since: {new Date(Number(store.dateOpened)).toISOString().split("T")[0]}</Typography>
+              <Typography variant="h6" color="primary" >Since: {new Date(Number(store.dateOpened)).toISOString().split("T")[0]}</Typography>
             </Box>
             <Box className="row">
               <Tooltip title={`${store.rate}`}>
@@ -93,6 +96,7 @@ const Store = () => {
             </Box>
           </Box>
         </Box>
+
         <Divider style={{width:"80%"}}><Typography variant="h4" color="info.light" style={{cursor:"pointer"}}>Products</Typography></Divider>
         <Box className="storeProducts">
           {

@@ -25,7 +25,6 @@ function App() {
   return (
     <>
     <Theme>
-      <ContextProvider>
         <BrowserRouter>
           <Navbar/>
           <Routes>
@@ -48,7 +47,6 @@ function App() {
           </Routes>
           <Footer/>
         </BrowserRouter>
-      </ContextProvider>
       </Theme>
     </>
   );

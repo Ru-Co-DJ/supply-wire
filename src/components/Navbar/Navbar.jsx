@@ -12,8 +12,8 @@ const Navbar = () => {
   const {account} = useStateContext();
   const [openMenu, setOpenMenu] = useState(false)
   return (
-    <Box style={{maxHeight:"100%"}}>
-    <AppBar elevation={0} color="primary" position="sticky" style={{marginBottom:"20px", height:"60px", position:"fixed",zIndex:"15"}}>
+    <Box style={{maxHeight:"100%", maxWidth:"100%", marginBottom:"60px"}}>
+    <AppBar elevation={0} color="primary" position="fixed" style={{zIndex:"15"}}>
       <Toolbar className="navContainer">
         <Box className="row">
           <Link to="/" className="link">

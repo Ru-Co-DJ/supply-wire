@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ContextProvider } from './utils/context/ContextProvider';
 
 const client = new ApolloClient({
     uri:"http://localhost:5001/gql",
@@ -12,6 +13,8 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ApolloProvider client={client}>
-        <App />
+        <ContextProvider>
+            <App />
+        </ContextProvider>
     </ApolloProvider>
 );

@@ -24,7 +24,7 @@ const SideTool = ({setOpenMenu}) => {
           </Box>
         </Link>
         <Box>
-          <Link to="cart" className="link row">
+          <Link to="cart" className="link row" onClick={()=>setOpenMenu(false)}>
             <Badge badgeContent={cart.length} color="secondary">
               <ShoppingCartIcon style={{fontSize:"40px", color:"#0E2A47"}}/>
             </Badge>

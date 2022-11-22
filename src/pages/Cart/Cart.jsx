@@ -11,9 +11,7 @@ import transaction from "../../assets/images/cart/transaction.png"
 
 const Cart = () => {
   const {cart, setCart} = useStateContext()
-  const [open, setOpen] = useState(false)
   const {loading, error, data} = useQuery(getProductsGQL);
-
   return (
     <Box className="cartContainer">
       <Box style={{marginBottom:"20px"}}>
@@ -40,10 +38,10 @@ const Cart = () => {
                 {
                   cart.length ? cart.map((e,i)=>{
                     return(
-                      <>
-                        <CartItem item={e} key={i}/>
+                      <Box key={i}>
+                        <CartItem item={e}/>
                         <Divider style={{width:"98%"}}/>
-                      </>
+                      </Box>
                     )
                   }):(
                       <Box className="emptyCart">
@@ -54,9 +52,9 @@ const Cart = () => {
                     )
                 }
                 <Box className="cartFooter">
-                  <Typography variant="h6" color="primary" style={{marginRight:"15px"}}>Subtotal: (<span style={{fontWeight:"bold", color:"#FF5050"}}> ${cart.length ? cart?.map(e=>e.totalPrice)?.reduce((res, price)=>{
+                  <Typography variant="h6" color="primary" style={{marginRight:"15px"}}>Subtotal: (<span style={{fontWeight:"bold", color:"#FF5050"}}> ${cart.length ? Number(cart?.map(e=>e.totalPrice)?.reduce((res, price)=>{
                     return res + price
-                  }).toFixed(2) : 0} </span>)</Typography>
+                  }).toFixed(2)) : 0} </span>)</Typography>
                 </Box>
               </List>
             </Box>
@@ -64,9 +62,9 @@ const Cart = () => {
         </Grid>
         <Grid  item xs={12} md={4}>
           <Box className="cartControl">
-            <Typography variant="h6" color="primary">Subtotal: (<span style={{color:"#FF5050", fontWeight:"bold"}}>${cart.length ? cart?.map(e=>e.totalPrice)?.reduce((res, price)=>{
+            <Typography variant="h6" color="primary">Subtotal: (<span style={{color:"#FF5050", fontWeight:"bold"}}>${cart.length ? Number(cart?.map(e=>e.totalPrice)?.reduce((res, price)=>{
                     return res + price
-                  }).toFixed(2) : 0}</span>)  {cart.length} items</Typography>
+                  }).toFixed(2)) : 0}</span>)  {cart.length} items</Typography>
             <Typography variant="subtitle1" color="secondary">Please make sure that Items selected are correct</Typography>
             <Typography variant="body1" color="primary" style={{marginLeft:"35%", cursor:"pointer", border:"1px solid #0E2A47", borderRadius:"5px", padding:"5px"}}>Save For Later</Typography>
             <Button variant="contained" color="success" style={{width:"100%", marginTop:"30px"}}>Proceed to checkout</Button>

@@ -16,7 +16,7 @@ const ProductView = ({selectedProduct}) => {
     const {loading, error, data} = useQuery(getProductsGQL)
     const [similar, setSimilar] = useState([])
     const {cart,setCart} = useStateContext()
-    const [toBuy, setToBuy] = useState({})
+    const [toBuy, setToBuy] = useState({quantity:1,totalPrice:selectedProduct.price,product:selectedProduct.id})
     const [cartAdded, setCartAdded] = useState(false)
     const [openSnack, setOpenSnack] = useState(false)
 
@@ -102,7 +102,6 @@ const ProductView = ({selectedProduct}) => {
                                 <InputLabel>Quantity</InputLabel>
                                 <Select value={toBuy.quantity || 1} onChange={(e)=>{
                                     setToBuy(prev=>({...prev, quantity:e.target.value}))
-                                    setToBuy(prev=>({...prev, product:selectedProduct.id}))
                                     setToBuy(prev=>({...prev, totalPrice:selectedProduct.price*e.target.value.toFixed(2)}))
                                     }}>
                                     {

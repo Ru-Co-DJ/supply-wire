@@ -1,5 +1,5 @@
 .productContainer{
-    width: 100%;
+    max-width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: flex-start;
@@ -51,7 +51,7 @@
 }
 
 .productReviewsContainer{
-    width: 100%;
+    max-width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
@@ -60,7 +60,7 @@
 }
 
 .oneReview{
-    width: 100%;
+    max-width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -106,8 +106,13 @@
 .similarProducts{
     max-width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.productBanner{
+    margin-top: -20px;
+    z-index: -1;
 }
